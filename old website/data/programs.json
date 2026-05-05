@@ -1,0 +1,57 @@
+{
+  "programs": [
+    {
+      "id": "school-visits",
+      "name": "Wildlife Ambassador Visits",
+      "status": "active",
+      "shortDesc": "Noodle the crow visits K–12 classrooms, nature centers, and community events.",
+      "longDesc": "Our signature program brings Noodle the American Crow directly to your school or organization. Students get to meet a real wildlife ambassador, learn about imprinting and non-releasable animals, and discover what it means to be a steward of Michigan wildlife.",
+      "audience": ["K–12 schools", "Nature centers", "Libraries", "Summer camps", "Community events"],
+      "duration": "45–90 minutes",
+      "capacity": "Up to 60 students per session",
+      "bookingContact": "hello@wildwise.org",
+      "tags": ["in-person", "Noodle", "ambassador"]
+    },
+    {
+      "id": "wildlife-first-responder",
+      "name": "Wildlife First Responder",
+      "status": "coming-soon",
+      "shortDesc": "A community training program teaching people what to do — and what not to do — when they encounter injured wildlife.",
+      "longDesc": "Most wildlife emergencies are made worse by well-meaning people doing the wrong thing. Wildlife First Responder gives ordinary Michiganders the knowledge and confidence to be the first line of help — understanding when to act, when to wait, and who to call.",
+      "audience": ["Adults", "Volunteers", "Neighborhood organizations", "Local businesses"],
+      "duration": "2–3 hours",
+      "capacity": "Up to 30 participants",
+      "modules": [
+        "Reading animal behavior",
+        "The 5 most dangerous mistakes",
+        "Species-specific guidance",
+        "Michigan rehabber network",
+        "Safe containment basics"
+      ],
+      "tags": ["training", "community", "coming-soon"]
+    },
+    {
+      "id": "transporter-network",
+      "name": "Wildlife Transporter Network",
+      "status": "building",
+      "shortDesc": "A volunteer driver network connecting injured animals to licensed rehabbers faster.",
+      "longDesc": "One of the biggest gaps in wildlife rescue is transport — rehabbers are often overloaded and miles away. We're building a network of trained volunteer drivers in Ottawa County and surrounding areas who can safely move animals from point of rescue to point of care.",
+      "audience": ["Volunteers with vehicles", "Community drivers"],
+      "requirements": [
+        "Reliable vehicle",
+        "Willingness to handle secure containment carriers",
+        "Completion of WildWise orientation"
+      ],
+      "tags": ["volunteer", "transport", "building"]
+    },
+    {
+      "id": "partner-education",
+      "name": "Partner & Org Education",
+      "status": "active",
+      "shortDesc": "Custom educational content for parks, conservation orgs, veterinary clinics, and nature centers.",
+      "longDesc": "We work with organizations that regularly encounter wildlife questions from the public — helping their staff and volunteers give accurate, helpful guidance instead of well-intentioned misinformation.",
+      "audience": ["Metro parks", "Conservation districts", "Vet clinics", "Nature centers", "Local government"],
+      "tags": ["partnership", "training", "organizations"]
+    }
+  ]
+}

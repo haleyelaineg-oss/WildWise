@@ -1,0 +1,125 @@
+{
+  "animals": [
+    {
+      "id": "white-tailed-deer",
+      "name": "White-tailed Deer",
+      "emoji": "🦌",
+      "commonName": "White-tail",
+      "status": "common",
+      "season": "Year-round (fawns: May–Jun)",
+      "tags": ["mammal", "Michigan native", "fawn season"],
+      "summary": "Fawns are often found alone — this is normal. Does leave fawns hidden while foraging.",
+      "doNotPickUp": true,
+      "callRehabWhen": [
+        "Fawn is crying continuously for more than a few hours",
+        "Fawn is visibly injured",
+        "Dead doe is found nearby",
+        "Fawn is following humans or dogs"
+      ],
+      "commonMistake": "Picking up a curled, quiet fawn — they are 'hiding', not abandoned."
+    },
+    {
+      "id": "eastern-cottontail",
+      "name": "Eastern Cottontail",
+      "emoji": "🐇",
+      "commonName": "Cottontail",
+      "status": "very common",
+      "season": "Year-round (kits: Mar–Sep)",
+      "tags": ["mammal", "Michigan native", "frequently rescued"],
+      "summary": "Nests are often disturbed by lawn mowers. Mother visits briefly at dusk and dawn.",
+      "doNotPickUp": true,
+      "callRehabWhen": [
+        "Kit is cold and unresponsive",
+        "Visible injury",
+        "Cat or dog has handled it (saliva is toxic to rabbits)",
+        "Eyes still closed and nest is destroyed"
+      ],
+      "commonMistake": "Handling a nest kit — cottontails panic-die easily and rarely survive human-raised attempts."
+    },
+    {
+      "id": "canada-goose",
+      "name": "Canada Goose",
+      "emoji": "🪶",
+      "commonName": "Canada Goose",
+      "status": "very common",
+      "season": "Year-round (goslings: Apr–Jun)",
+      "tags": ["bird", "waterfowl", "Michigan native"],
+      "summary": "Goslings look small and vulnerable but usually have a parent close by.",
+      "doNotPickUp": true,
+      "callRehabWhen": [
+        "Gosling is alone for hours with no adults present",
+        "Bird has an obvious wing or leg injury",
+        "Bird covered in oil or chemical"
+      ],
+      "commonMistake": "Taking goslings because they seemed 'unattended' — parents are nearby."
+    },
+    {
+      "id": "raccoon",
+      "name": "Raccoon",
+      "emoji": "🦝",
+      "commonName": "Raccoon",
+      "status": "common",
+      "season": "Year-round (kits: Apr–May)",
+      "tags": ["mammal", "Michigan native", "rabies vector"],
+      "summary": "Raccoons are a rabies vector species. Never handle with bare hands.",
+      "doNotPickUp": true,
+      "callRehabWhen": [
+        "Kit is wandering alone, crying",
+        "Adult is acting disoriented in daylight",
+        "Animal has a visible injury"
+      ],
+      "commonMistake": "Hand-raising kit raccoons at home — illegal in Michigan without a permit and dangerous."
+    },
+    {
+      "id": "mallard",
+      "name": "Mallard Duck",
+      "emoji": "🦆",
+      "commonName": "Mallard",
+      "status": "very common",
+      "season": "Year-round (ducklings: Apr–Jun)",
+      "tags": ["bird", "waterfowl", "Michigan native"],
+      "summary": "Ducklings separated from their mother are at immediate risk. Act quickly.",
+      "doNotPickUp": false,
+      "callRehabWhen": [
+        "Ducklings are separated from mother with no adult visible",
+        "Ducklings are inside a structure (basement, storm drain)",
+        "Bird has obvious injury"
+      ],
+      "commonMistake": "Feeding bread — bread is harmful to waterfowl and encourages dependency."
+    },
+    {
+      "id": "songbird",
+      "name": "Songbirds",
+      "emoji": "🐦",
+      "commonName": "Songbirds",
+      "status": "common",
+      "season": "Spring–Fall (nestlings: Apr–Aug)",
+      "tags": ["bird", "Michigan native", "frequently rescued"],
+      "summary": "Fledglings (hopping, short-winged birds on the ground) are not injured — they are learning to fly.",
+      "doNotPickUp": true,
+      "callRehabWhen": [
+        "Bird is visibly injured (drooping wing, leg injury)",
+        "Bird has been in a cat's mouth",
+        "True nestling (no feathers, or pin feathers only) fell from nest"
+      ],
+      "commonMistake": "Picking up fledglings — they SHOULD be on the ground. Parents are watching."
+    },
+    {
+      "id": "opossum",
+      "name": "Virginia Opossum",
+      "emoji": "🐾",
+      "commonName": "Opossum",
+      "status": "common",
+      "season": "Year-round (joeys: Feb–Aug)",
+      "tags": ["mammal", "Michigan native", "marsupial"],
+      "summary": "Opossums are North America's only marsupial. Joeys smaller than a dollar bill need immediate care.",
+      "doNotPickUp": false,
+      "callRehabWhen": [
+        "Opossum is smaller than 7–8 inches body length (not tail)",
+        "Visible injury",
+        "Found clinging to a dead mother"
+      ],
+      "commonMistake": "Playing dead is normal — 'playing opossum' is a real, involuntary response."
+    }
+  ]
+}

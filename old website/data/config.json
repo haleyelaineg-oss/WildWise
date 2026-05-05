@@ -1,0 +1,20 @@
+{
+  "siteName": "WildWise",
+  "tagline": "Helping people help wildlife wisely.",
+  "founded": "2025",
+  "location": "Ottawa County, Michigan",
+  "email": "hello@wildwise.org",
+  "social": {
+    "instagram": "",
+    "facebook": "",
+    "tiktok": ""
+  },
+  "colors": {
+    "steel":  "#33658a",
+    "sky":    "#86bbd8",
+    "olive":  "#acb666",
+    "navy":   "#2f4858",
+    "forest": "#455139",
+    "cream":  "#f7f9ef"
+  }
+}

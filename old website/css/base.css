@@ -1,0 +1,163 @@
+/* ==========================================================================
+   base.css — Global base styles, typography, body
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
+@font-face {
+  font-family: 'Lovelo Black';
+  src: url('../assets/fonts/Lovelo Black.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--color-text);
+  background-color: var(--color-cream);
+  line-height: 1.65;
+}
+
+/* --- Headings --- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--color-navy);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1 { font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl)); }
+h2 { font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl)); }
+h3 { font-size: clamp(var(--text-xl), 2.5vw, var(--text-2xl)); }
+h4 { font-size: var(--text-lg); }
+h5 { font-size: var(--text-base); }
+
+/* --- Body text --- */
+
+p {
+  max-width: 68ch;
+  color: var(--color-text);
+}
+
+p + p {
+  margin-top: var(--space-4);
+}
+
+/* --- Links --- */
+
+a {
+  color: var(--color-steel);
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-navy);
+}
+
+/* --- Strong / Em --- */
+
+strong {
+  font-weight: 600;
+}
+
+em {
+  font-style: italic;
+}
+
+/* --- Code --- */
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: rgba(172, 182, 102, 0.12);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+  color: var(--color-forest);
+}
+
+/* --- Focus visible --- */
+
+:focus-visible {
+  outline: 2px solid var(--color-steel);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* --- Selection --- */
+
+::selection {
+  background: var(--color-sky);
+  color: var(--color-navy);
+}
+
+/* --- Utility: visually hidden --- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Utility: image placeholder --- */
+
+.img-placeholder {
+  background: linear-gradient(135deg, var(--color-sky) 0%, var(--color-steel) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+  border-radius: var(--radius-md);
+  text-align: center;
+  padding: var(--space-4);
+}
+
+/* --- Fade-in animation baseline --- */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.stagger-children.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for children */
+.stagger-children.visible > *:nth-child(1) { transition-delay: 0ms; }
+.stagger-children.visible > *:nth-child(2) { transition-delay: 80ms; }
+.stagger-children.visible > *:nth-child(3) { transition-delay: 160ms; }
+.stagger-children.visible > *:nth-child(4) { transition-delay: 240ms; }
+.stagger-children.visible > *:nth-child(5) { transition-delay: 320ms; }
+.stagger-children.visible > *:nth-child(6) { transition-delay: 400ms; }

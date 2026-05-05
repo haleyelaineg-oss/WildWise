@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — WildWise</title>
+  <meta name="description" content="This page doesn't exist — but we can help you find what you're looking for.">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <style>
+    .error-page {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-12) var(--space-6);
+      background: var(--color-navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .error-page::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 50% 50%, rgba(51, 101, 138, 0.2) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .error-page__inner {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+    }
+
+    .error-page__crow {
+      font-size: 5rem;
+      line-height: 1;
+      margin-bottom: var(--space-6);
+    }
+
+    .error-page__code {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-olive);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-4);
+    }
+
+    .error-page h1 {
+      color: var(--color-cream);
+      font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+      margin-bottom: var(--space-5);
+    }
+
+    .error-page p {
+      color: rgba(247, 249, 239, 0.68);
+      font-size: var(--text-md);
+      margin: 0 auto;
+      max-width: 42ch;
+      line-height: 1.65;
+    }
+
+    .error-page__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      justify-content: center;
+      margin-top: var(--space-10);
+    }
+
+    .error-page__nav {
+      margin-top: var(--space-12);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      justify-content: center;
+    }
+
+    .error-page__nav a {
+      font-size: var(--text-sm);
+      color: rgba(247, 249, 239, 0.5);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .error-page__nav a:hover {
+      color: var(--color-sky);
+    }
+
+    .error-page__nav span {
+      color: rgba(247, 249, 239, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="error-page">
+    <div class="error-page__inner">
+
+      <!-- Noodle stands guard -->
+      <div class="error-page__crow" aria-hidden="true">🐦‍⬛</div>
+
+      <div class="error-page__code">404 — Page not found</div>
+
+      <h1>Noodle looked everywhere.<br>Nothing here.</h1>
+
+      <p>
+        This page doesn't exist — or it may have moved.
+        Noodle is not concerned. He has crackers.
+      </p>
+
+      <div class="error-page__links">
+        <a href="index.html" class="btn-primary">Go home</a>
+        <a href="education.html" class="btn-secondary btn-secondary--light">Wildlife education</a>
+      </div>
+
+      <nav class="error-page__nav" aria-label="Site pages">
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">·</span>
+        <a href="about.html">Our Story</a>
+        <span aria-hidden="true">·</span>
+        <a href="education.html">Education</a>
+        <span aria-hidden="true">·</span>
+        <a href="contact.html">Get Involved</a>
+      </nav>
+
+    </div>
+  </div>
+
+</body>
+</html>

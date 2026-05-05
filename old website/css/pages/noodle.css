@@ -1,0 +1,344 @@
+/* ==========================================================================
+   pages/noodle.css — Meet Noodle page styles
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   Noodle hero
+   -------------------------------------------------------------------------- */
+
+.noodle-hero {
+  padding-top: calc(var(--nav-height) + var(--space-20));
+  padding-bottom: var(--space-20);
+  background: var(--color-navy);
+  position: relative;
+  overflow: hidden;
+}
+
+.noodle-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 70% at 60% 40%, rgba(51, 101, 138, 0.3) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 50% at 5% 80%, rgba(69, 81, 57, 0.2) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.noodle-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .noodle-hero__inner {
+    grid-template-columns: 1fr 400px;
+  }
+}
+
+.noodle-hero h1 {
+  color: var(--color-cream);
+  margin-top: var(--space-4);
+}
+
+.noodle-hero .lead {
+  color: rgba(247, 249, 239, 0.75);
+  font-size: var(--text-md);
+  margin-top: var(--space-5);
+  max-width: 52ch;
+  line-height: 1.7;
+}
+
+.noodle-hero__photo {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 3px solid rgba(134, 187, 216, 0.15);
+}
+
+.noodle-hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+
+/* --------------------------------------------------------------------------
+   Profile stats
+   -------------------------------------------------------------------------- */
+
+.noodle-stats {
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-8) 0;
+}
+
+.noodle-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .noodle-stats__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.noodle-stat {
+  text-align: center;
+}
+
+.noodle-stat__value {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1.1;
+}
+
+.noodle-stat__label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: var(--space-1);
+}
+
+
+/* --------------------------------------------------------------------------
+   Noodle story
+   -------------------------------------------------------------------------- */
+
+.noodle-story {
+  background: var(--color-cream);
+}
+
+.noodle-story__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .noodle-story__grid {
+    grid-template-columns: 1fr 380px;
+  }
+}
+
+.noodle-sidebar {
+  position: sticky;
+  top: calc(var(--nav-height) + var(--space-8));
+}
+
+.noodle-sidebar__card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.noodle-sidebar__card + .noodle-sidebar__card {
+  margin-top: var(--space-5);
+}
+
+.noodle-sidebar__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--color-navy);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.noodle-sidebar__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+
+.noodle-sidebar__item:last-child {
+  border-bottom: none;
+}
+
+.noodle-sidebar__key {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.noodle-sidebar__val {
+  color: var(--color-navy);
+  font-weight: 500;
+  text-align: right;
+}
+
+
+/* --------------------------------------------------------------------------
+   Imprinting explainer
+   -------------------------------------------------------------------------- */
+
+.imprinting-section {
+  background: var(--color-navy);
+  position: relative;
+  overflow: hidden;
+}
+
+.imprinting-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(51, 101, 138, 0.2) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.imprinting-section__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.imprint-steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-10);
+}
+
+@media (min-width: 640px) {
+  .imprint-steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.imprint-step {
+  background: rgba(247, 249, 239, 0.04);
+  border: 1px solid rgba(134, 187, 216, 0.12);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  text-align: center;
+}
+
+.imprint-step__icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-4);
+  line-height: 1;
+}
+
+.imprint-step__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--color-cream);
+  margin-bottom: var(--space-3);
+}
+
+.imprint-step__body {
+  font-size: var(--text-sm);
+  color: rgba(247, 249, 239, 0.6);
+  line-height: 1.65;
+}
+
+.imprint-step__body p { max-width: none; }
+
+
+/* --------------------------------------------------------------------------
+   Photo gallery
+   -------------------------------------------------------------------------- */
+
+.noodle-gallery {
+  background: var(--color-cream);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .gallery-grid__item--featured {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}
+
+.gallery-grid__item {
+  aspect-ratio: 1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery-grid__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-grid__item:hover img {
+  transform: scale(1.05);
+}
+
+
+/* --------------------------------------------------------------------------
+   School visits CTA
+   -------------------------------------------------------------------------- */
+
+.school-cta {
+  background: var(--color-forest);
+  position: relative;
+  overflow: hidden;
+}
+
+.school-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(172, 182, 102, 0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.school-cta__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .school-cta__inner {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.school-cta h2 {
+  color: var(--color-cream);
+}
+
+.school-cta p {
+  color: rgba(247, 249, 239, 0.78);
+  margin-top: var(--space-4);
+  max-width: 52ch;
+}

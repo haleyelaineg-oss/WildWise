@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WildWise - Helping people help wildlife wisely.</title>
+  <meta name="description" content="WildWise is a Michigan-based wildlife education organization helping communities understand what to do (and what not to do) when they encounter wildlife in need.">
+  <meta name="theme-color" content="#2f4858">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="WildWise — Helping people help wildlife wisely.">
+  <meta property="og:description" content="Wildlife education. Learn when to help, when to wait, and who to call.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Favicon placeholder -->
+  <!-- [REPLACE] Add real favicon files to assets/icons/ and update these paths -->
+  <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/pages/home.css">
+</head>
+<body>
+
+  <!-- Skip to main content (accessibility) -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ======================================================================
+       NAV
+  ====================================================================== -->
+  <nav class="nav nav--dark" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav__logo" aria-label="WildWise — home">
+        <img class="nav__logo-mark" src="assets/icons/hand-paw-light.svg" alt="" aria-hidden="true">
+        <span class="nav__logo-text">
+          <span class="wild">WILD</span><span class="wise">WISE</span>
+        </span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="nav__links" role="list">
+        <li><a href="index.html"    class="nav__link">Home</a></li>
+        <li><a href="about.html"    class="nav__link">Our Story</a></li>
+        <li><a href="education.html" class="nav__link">Education</a></li>
+        <li><a href="contact.html"  class="nav__link nav__cta btn-primary" style="padding: 8px 20px; font-size: 0.875rem;">Get Involved</a></li>
+      </ul>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav__mobile" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html"    class="nav__mobile-link">Home</a>
+    <a href="about.html"    class="nav__mobile-link">Our Story</a>
+    <a href="education.html" class="nav__mobile-link">Education</a>
+    <a href="contact.html"  class="nav__mobile-link nav__mobile-cta btn-primary">Get Involved</a>
+  </div>
+
+  <!-- ======================================================================
+       MAIN
+  ====================================================================== -->
+  <main id="main">
+
+    <!-- ------------------------------------------------------------------
+         HERO
+    ------------------------------------------------------------------ -->
+    <section class="hero">
+
+      <!-- Decorative background logo -->
+      <div class="hero__bg" aria-hidden="true">
+        <img class="hero__bg-svg" style="transform: translate(-25px, -20px);" src="assets/icons/full-color-logo-dark.png" alt="wildwise logo">
+      </div>
+
+      <div class="container hero__inner">
+        <div class="hero__content">
+
+          <div class="hero__eyebrow fade-in">
+            <span class="hero__eyebrow-line"></span>
+            <span class="hero__eyebrow-text">Est. 2025</span>
+            <span class="hero__eyebrow-line"></span>
+          </div>
+
+          <h1 class="fade-in">
+            <em>Helping people<br>
+            help wildlife</em> wisely.
+          </h1>
+
+          <p class="hero__subhead fade-in">
+            Wildlife rescue is rooted in kindness. It's driven by caring people with the best of intentions. However, good intentions can sometimes cause harm when those helping don't know what they don't know. WildWise aims to bridge that gap.
+          </p>
+
+          <div class="hero__actions btn-group fade-in">
+            <a href="education.html" class="btn-primary">Learn How to Help</a>
+            <a href="about.html" class="btn-secondary btn-secondary--light">Our Story</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero__scroll" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+        <span>Learn More</span>
+      </div>
+
+    </section>
+
+    <!-- ------------------------------------------------------------------
+         FEATURE CARDS (3-up)
+    ------------------------------------------------------------------ -->
+    <section class="features section">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="section-label">We share a home with wildlife</span>
+          <h2>Let's be good neighbors.</h2>
+        </div>
+
+        <div class="card-grid card-grid--3 stagger-children">
+          
+          <!-- Our Story -->
+          <a href="about.html" class="feature-card feature-card--forest">
+            <div class="feature-card__icon" aria-hidden="true">
+              <img src="assets/icons/full-color-logo-dark.png" width="90" height="90" alt="" aria-hidden="true">
+            </div>
+            <span class="section-label feature-card__label">Who We Are</span>
+            <h3 class="feature-card__title">Our Story</h3>
+            <div class="feature-card__body">
+              <p>Get to know the humans behind WildWise and how their journey with an orphaned raccoon started it all.</p>
+            </div>
+            <span class="feature-card__arrow">
+              Meet the Founders
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+
+          <!-- Our Mission -->
+          <a href="about.html" class="feature-card feature-card--steel">
+            <div class="feature-card__icon" aria-hidden="true">
+              <img src="assets/icons/hand-paw-prints-icon.png" width="90" height="90" alt="" aria-hidden="true">
+            </div>
+            <span class="section-label feature-card__label">The Problem we Aim to fix</span>
+            <h3 class="feature-card__title">Our Mission</h3>
+            <div class="feature-card__body">
+              <p>WildWise aims to address a gap in public education on wildlife encounters. Our goal is to teach people who care how to give animals in need the proper care.</p>
+            </div>
+            <span class="feature-card__arrow">
+              Read our story
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+
+          <!-- Education -->
+          <a href="education.html" class="feature-card feature-card--forest">
+            <div class="feature-card__icon" aria-hidden="true">
+              <img src="assets/icons/book.png" width="90" height="90" alt="" aria-hidden="true">
+            </div>
+            <span class="section-label feature-card__label">Helping Animals 101</span>
+            <h3 class="feature-card__title">Wildlife Education</h3>
+            <div class="feature-card__body">
+              <p>Found a lost or injured animal and want to help? Learning more about first response is an important first step. Proper response can save lives or let a healthy animal stay wild.</p>
+            </div>
+            <span class="feature-card__arrow">
+              Explore the guides
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------
+         THE PROBLEM WE'RE SOLVING
+    ------------------------------------------------------------------ -->
+    <section class="problem section section--texture">
+      <div class="container">
+        <div class="problem__grid">
+
+          <div class="problem__inner">
+            <span class="section-label fade-in">The gap we aim to help close</span>
+            <h2 class="fade-in" style="color: #FFFFFF; margin-bottom: 20px;">The rehabber capacity crisis.</h2>
+            <div class="problem__body fade-in">
+              <p>
+                Michigan's licensed wildlife rehabilitators are overwhelmed. Every spring and summer, they're flooded with animal intakes. Many of these animals are healthy and don't need human help; they're just waiting for mom to come back. Well-meaning people often mistake them for being in danger and intervene, which creates a huge strain on rehabbers.
+              <p>
+                Every unnecessary intake takes capacity from an animal that genuinely needs help. Many rehabbers have to turn away animals in need because they're at capacity. That's the problem that inspired us to start WildWise. We want to help people understand when to help, when to wait, and who to call so that animals in need can get the care they deserve and healthy animals can stay wild.
+              </p>
+              <p>
+            
+              </p>
+            </div>
+            <div class="btn-group fade-in" style="margin-top: var(--space-8);">
+              <a href="education.html" class="btn-primary">Learn When to Help</a>
+              <a href="about.html" class="btn-secondary btn-secondary--light">Our Story</a>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="problem__stats stagger-children" style="align-self: center;">
+            <div class="stat-card">
+              <div class="stat-card__number" Style="font-size: var(--text-2xl); margin-bottom: 20px;">The majority</div>
+              <div class="stat-card__label">of wildlife rehabbers are unpaid volunteers who fund rehab out of their own pockets or through community donations. </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__number" style="font-size: 36px; margin-bottom: 20px;" data-count="500000"></div>
+              <div class="stat-card__label">An estimated 500,000 wild animals are admitted for rehabilitation each year in the US</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__number" style="font-size: 42px; margin-bottom: 10px; padding-bottom: 25px;" data-count="53"></div>
+              <div class="stat-card__label">
+                
+               <div class="stat-card__label" style="margin-bottom: 20px; font-size: 16px;">Licensed rehabbers listed for the entire state of Michigan.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------
+         CTA SECTION
+    ------------------------------------------------------------------ -->
+    <section class="cta-section section">
+      <div class="container">
+        <div class="cta-section__inner fade-in">
+
+          <!-- Inline SVG paw/leaf accent -->
+          <div style="margin-bottom: var(--space-6);" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin: 0 auto; opacity: 0.6;">
+              <path d="M24 4C14 4 6 12 6 22C6 32 14 44 24 44C34 44 42 32 42 22C42 12 34 4 24 4Z" fill="#acb666" opacity="0.4"/>
+              <path d="M24 10C18 14 14 18 14 24C14 30 18 36 24 38C30 36 34 30 34 24C34 18 30 14 24 10Z" fill="#acb666" opacity="0.6"/>
+              <circle cx="24" cy="24" r="4" fill="#86bbd8" opacity="0.8"/>
+            </svg>
+          </div>
+
+          <span class="section-label" style="color: rgba(247,249,239,0.5);"></div>span>
+          <h2>Wildlife needs kind neighbors.</h2>
+          <p>Learn how you can help and when help is truly needed.</p>
+          <div class="btn-group">
+            <a href="contact.html" class="btn-primary" style="background: var(--color-olive); border-color: var(--color-olive); color: var(--color-navy);">Get Involved</a>
+            <a href="contact.html#partner" class="btn-secondary btn-secondary--light">Partner With Us</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================
+       FOOTER
+  ====================================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+
+        <!-- Brand -->
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo" aria-label="WildWise home">
+            <img class="nav__logo-mark" src="assets/icons/hand-paw-light.svg" alt="" aria-hidden="true">
+            <span class="nav__logo-text">
+              <span class="wild">WILD</span><span class="wise">WISE</span>
+            </span>
+          </a>
+          <p class="footer__tagline">Helping people help wildlife wisely.</p>
+          <p class="footer__location">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a5 5 0 0 0-5 5c0 3.5 5 9 5 9s5-5.5 5-9a5 5 0 0 0-5-5zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+            Ottawa County, Michigan
+          </p>
+        </div>
+
+        <!-- Navigate -->
+        <div>
+          <p class="footer__col-title">Navigate</p>
+          <ul class="footer__links" role="list">
+            <li><a href="index.html"     class="footer__link">Home</a></li>
+            <li><a href="about.html"     class="footer__link">Our Story</a></li>
+            <li><a href="education.html" class="footer__link">Education</a></li>
+            <li><a href="contact.html"   class="footer__link">Get Involved</a></li>
+          </ul>
+        </div>
+
+        <!-- Education -->
+        <div>
+          <p class="footer__col-title">Education</p>
+          <ul class="footer__links" role="list">
+            <li><a href="education.html#decision-guide"    class="footer__link">Should I help?</a></li>
+            <li><a href="education.html#dont-steal-babies" class="footer__link">Don't steal babies</a></li>
+            <li><a href="education.html#five-mistakes"     class="footer__link">5 Mistakes</a></li>
+            <li><a href="education.html#michigan-wildlife" class="footer__link">Michigan wildlife</a></li>
+            <li><a href="education.html#wfr"               class="footer__link">Wildlife First Responder <span class="coming-soon" style="font-size:10px; padding: 1px 6px; vertical-align:middle;">Soon</span></a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <p class="footer__col-title">Connect</p>
+          <ul class="footer__links" role="list">
+            <li><a href="contact.html#partner"   class="footer__link">Partner with us</a></li>
+            <li><a href="contact.html#volunteer" class="footer__link">Volunteer</a></li>
+            <li><a href="contact.html#school"    class="footer__link">Book a school visit</a></li>
+            <!-- [REPLACE] Add real social URLs in config.json and here -->
+            <li><a href="#" class="footer__link">Instagram</a></li>
+            <li><a href="#" class="footer__link">Facebook</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          &copy; <span id="year"></span> WildWise · Ottawa County, Michigan · Est. 2025
+        </p>
+        <div class="footer__social" aria-label="Social media links">
+          <!-- [REPLACE] Update href with real social URLs from config.json -->
+          <a href="#" class="footer__social-link" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="TikTok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    // Dynamic year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

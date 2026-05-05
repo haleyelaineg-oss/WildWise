@@ -1,0 +1,425 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  .rm-root {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--color-text-primary);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+  }
+
+  .rm-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .rm-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4a6741;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .rm-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    line-height: 1.2;
+  }
+
+  .rm-header h1 em {
+    font-style: italic;
+    color: #4a6741;
+  }
+
+  .rm-header p {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    margin: 0;
+    font-weight: 300;
+  }
+
+  .rm-phase {
+    margin-bottom: 2.5rem;
+  }
+
+  .rm-phase-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .rm-phase-badge {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .rm-phase-badge.urgent {
+    background: #fff3e0;
+    color: #e65100;
+    border: 0.5px solid #ffcc80;
+  }
+
+  .rm-phase-badge.soon {
+    background: #eef3ec;
+    color: #2d4a28;
+    border: 0.5px solid #c0dd97;
+  }
+
+  .rm-phase-badge.build {
+    background: #e3f2fd;
+    color: #0d47a1;
+    border: 0.5px solid #90caf9;
+  }
+
+  .rm-phase-badge.scale {
+    background: #f3e5f5;
+    color: #4a148c;
+    border: 0.5px solid #ce93d8;
+  }
+
+  .rm-phase-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .rm-phase-sub {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin-left: auto;
+    font-weight: 300;
+    white-space: nowrap;
+  }
+
+  .rm-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .rm-item {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    gap: 0.875rem;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+    cursor: default;
+  }
+
+  .rm-item:hover {
+    border-color: var(--color-border-secondary);
+  }
+
+  .rm-item-num {
+    min-width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 1px;
+  }
+
+  .rm-item-num.urgent { background: #fff3e0; color: #e65100; }
+  .rm-item-num.soon { background: #eef3ec; color: #2d4a28; }
+  .rm-item-num.build { background: #e3f2fd; color: #0d47a1; }
+  .rm-item-num.scale { background: #f3e5f5; color: #4a148c; }
+
+  .rm-item-content h4 {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0 3px;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+  }
+
+  .rm-item-content p {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  .rm-platform-section {
+    background: #2d4a28;
+    border-radius: 14px;
+    padding: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  .rm-platform-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.5px solid rgba(255,255,255,0.15);
+  }
+
+  .rm-platform-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #c8dcc4;
+    margin: 0;
+  }
+
+  .rm-platform-header .rm-phase-badge.scale {
+    background: rgba(243,229,245,0.15);
+    color: #e1bee7;
+    border-color: rgba(206,147,216,0.3);
+  }
+
+  .rm-platform-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .rm-platform-card {
+    background: rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 1.25rem;
+    border: 0.5px solid rgba(255,255,255,0.12);
+  }
+
+  .rm-platform-card h4 {
+    font-size: 13px;
+    font-weight: 500;
+    color: #a8c4a2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 0.875rem;
+  }
+
+  .rm-platform-feature {
+    font-size: 13px;
+    color: rgba(200,220,196,0.8);
+    padding: 5px 0;
+    border-bottom: 0.5px solid rgba(255,255,255,0.07);
+    line-height: 1.4;
+    font-weight: 300;
+  }
+
+  .rm-platform-feature:last-child {
+    border-bottom: none;
+  }
+
+  .rm-bottom {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background: var(--color-background-secondary);
+    border-radius: 12px;
+    border: 0.5px solid var(--color-border-tertiary);
+    text-align: center;
+  }
+
+  .rm-bottom p {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: #4a6741;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .rm-bottom cite {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    color: var(--color-text-secondary);
+    margin-top: 0.5rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 600px) {
+    .rm-platform-grid { grid-template-columns: 1fr; }
+    .rm-phase-sub { display: none; }
+    .rm-header h1 { font-size: 26px; }
+  }
+</style>
+
+<div class="rm-root">
+
+  <div class="rm-header">
+    <span class="rm-label">WildWise · Master Roadmap</span>
+    <h1>From one raccoon to a <em>nationwide movement.</em></h1>
+    <p>Everything starts with keeping Noodle safe. Everything else follows from there.</p>
+  </div>
+
+  <div class="rm-phase">
+    <div class="rm-phase-header">
+      <span class="rm-phase-badge urgent">Phase 1 — Urgent</span>
+      <h3 class="rm-phase-title">Protect Noodle</h3>
+      <span class="rm-phase-sub">Do this week</span>
+    </div>
+    <div class="rm-items">
+      <div class="rm-item">
+        <div class="rm-item-num urgent">1</div>
+        <div class="rm-item-content">
+          <h4>Get Dave's veterinary letter signed</h4>
+          <p>Official documentation of imprinting status, vaccination record, and non-releasable designation on practice letterhead.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-item-num urgent">2</div>
+        <div class="rm-item-content">
+          <h4>Send the Blandford email</h4>
+          <p>Reach out about an educational partnership. Lead with the story, not the legal situation. You already have a draft ready to go.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-item-num urgent">3</div>
+        <div class="rm-item-content">
+          <h4>Contact other licensed rehabbers</h4>
+          <p>Ask about working under their permit. Be transparent, lead with Noodle's story and your track record. Bring the vet letter.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-item-num urgent">4</div>
+        <div class="rm-item-content">
+          <h4>Consider a wildlife attorney consult</h4>
+          <p>One hour, one phone call. You're a customer buying information — not a defendant. It changes your position entirely.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rm-phase">
+    <div class="rm-phase-header">
+      <span class="rm-phase-badge soon">Phase 2 — Brand</span>
+      <h3 class="rm-phase-title">Build WildWise</h3>
+      <span class="rm-phase-sub">Next 30–60 days</span>
+    </div>
+    <div class="rm-items">
+      <div class="rm-item">
+        <div class="rm-item-num soon">1</div>
+        <div class="rm-item-content">
+          <h4>Launch the WildWise website</h4>
+          <p>Homepage and About page are already designed. Add Noodle's story, educational content, and a contact form.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-item-num soon">2</div>
+        <div class="rm-item-content">
+          <h4>Finalize logo 4 and brand assets</h4>
+          <p>Lock in the color palette, typography, and logo. Build out social media profiles under the WildWise brand.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-item-num soon">3</div>
+        <div class="rm-item-content">
+          <h4>Start telling Noodle's story publicly</h4>
+          <p>Social content, short videos, Noodle being Noodle. An imprinted raccoon with a mission is an internet magnet. Use it.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-item-num soon">4</div>
+        <div class="rm-item-content">
+          <h4>Formalize as a 501(c)(3)</h4>
+          <p>Nonprofit status unlocks grants, credibility, and the institutional affiliations needed for educational permits.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rm-phase">
+    <div class="rm-phase-header">
+      <span class="rm-phase-badge build">Phase 3 — Programs</span>
+      <h3 class="rm-phase-title">Build the education layer</h3>
+      <span class="rm-phase-sub">Months 2–6</span>
+    </div>
+    <div class="rm-items">
+      <div class="rm-item">
+        <div class="rm-item-num build">1</div>
+        <div class="rm-item-content">
+          <h4>Develop school ambassador curriculum</h4>
+          <p>Noodle visits classrooms. Michigan wildlife, what to do when you find an animal, why rehabbers matter. Age-appropriate and compelling.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-item-num build">2</div>
+        <div class="rm-item-content">
+          <h4>Create Wildlife First Responder training</h4>
+          <p>The program that should have always existed. Community members trained in assessment, stabilization, and transfer. Certifiable and scalable.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-item-num build">3</div>
+        <div class="rm-item-content">
+          <h4>Launch community programs</h4>
+          <p>Libraries, community centers, nature centers, 4H chapters. Anywhere people gather and animals get found.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-item-num build">4</div>
+        <div class="rm-item-content">
+          <h4>Build the transporter volunteer network</h4>
+          <p>Recruit, lightly train, and map volunteer transporters across Michigan. Define service areas. Build the coordination framework.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rm-platform-section">
+    <div class="rm-platform-header">
+      <span class="rm-phase-badge scale">Phase 4 — Platform</span>
+      <h3>Build the full stack system</h3>
+    </div>
+    <div class="rm-platform-grid">
+      <div class="rm-platform-card">
+        <h4>For rehabbers</h4>
+        <div class="rm-platform-feature">Real-time capacity tracking</div>
+        <div class="rm-platform-feature">Permit management dashboard</div>
+        <div class="rm-platform-feature">Compliance record keeping</div>
+        <div class="rm-platform-feature">Intake management</div>
+        <div class="rm-platform-feature">Zero phone tag</div>
+      </div>
+      <div class="rm-platform-card">
+        <h4>For rescuers</h4>
+        <div class="rm-platform-feature">Nearest rehabber with capacity</div>
+        <div class="rm-platform-feature">Species-specific permit matching</div>
+        <div class="rm-platform-feature">Emergency care guides</div>
+        <div class="rm-platform-feature">Transport request matching</div>
+        <div class="rm-platform-feature">First Responder network</div>
+      </div>
+      <div class="rm-platform-card">
+        <h4>The intake form</h4>
+        <div class="rm-platform-feature">Did you try to reunite with mom?</div>
+        <div class="rm-platform-feature">Species + condition triage</div>
+        <div class="rm-platform-feature">Reduces unnecessary rescues</div>
+        <div class="rm-platform-feature">Educates at point of crisis</div>
+        <div class="rm-platform-feature">Feeds rehabber record system</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rm-bottom">
+    <p>"My choices were basically limited to condemn him to death or become a criminal. I chose that one."</p>
+    <cite>— WildWise founder · The decision that started everything</cite>
+  </div>
+
+</div>

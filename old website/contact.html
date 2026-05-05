@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Involved — WildWise</title>
+  <meta name="description" content="Partner with WildWise, volunteer as a wildlife transporter, book a school visit with Noodle, or get in touch.">
+  <meta name="theme-color" content="#2f4858">
+
+  <meta property="og:title" content="Get Involved — WildWise">
+  <meta property="og:description" content="Partner, volunteer, or book a visit. Join the WildWise community in Ottawa County, Michigan.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/pages/contact.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="WildWise — home">
+        <img class="nav__logo-mark" src="assets/icons/hand-paw-light.svg" alt="" aria-hidden="true">
+        <span class="nav__logo-text"><span class="wild">WILD</span><span class="wise">WISE</span></span>
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html"    class="nav__link">Home</a></li>
+        <li><a href="about.html"    class="nav__link">Our Story</a></li>
+        <li><a href="education.html" class="nav__link">Education</a></li>
+        <li><a href="contact.html"  class="nav__link nav__cta btn-primary" style="padding: 8px 20px; font-size: 0.875rem;">Get Involved</a></li>
+      </ul>
+      <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav__mobile" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html"    class="nav__mobile-link">Home</a>
+    <a href="about.html"    class="nav__mobile-link">Our Story</a>
+    <a href="education.html" class="nav__mobile-link">Education</a>
+    <a href="contact.html"  class="nav__mobile-link nav__mobile-cta btn-primary">Get Involved</a>
+  </div>
+
+  <!-- MAIN -->
+  <main id="main">
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container page-hero__inner">
+        <span class="section-label fade-in">Get Involved</span>
+        <h1 class="fade-in">Let's build better wildlife<br>neighbors together.</h1>
+        <p class="lead fade-in">
+          Whether you want to partner, volunteer, bring Noodle to your school,
+          or just say hello — we'd love to hear from you.
+        </p>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------
+         FORMS
+    ------------------------------------------------------------------ -->
+    <section class="section section--cream" id="forms">
+      <div class="container">
+        <div class="contact-grid">
+
+          <!-- Forms column -->
+          <div class="fade-in">
+
+            <!-- Tab navigation -->
+            <div class="form-tabs" role="tablist" aria-label="Contact form types">
+              <button class="form-tab" role="tab" data-tab="panel-partner"   id="tab-partner"   aria-controls="panel-partner"   aria-selected="false">🤝 Partner with us</button>
+              <button class="form-tab" role="tab" data-tab="panel-school"    id="tab-school"    aria-controls="panel-school"    aria-selected="false">🏫 Book a school visit</button>
+              <button class="form-tab" role="tab" data-tab="panel-volunteer" id="tab-volunteer" aria-controls="panel-volunteer" aria-selected="false">🙋 Volunteer</button>
+              <button class="form-tab" role="tab" data-tab="panel-general"   id="tab-general"   aria-controls="panel-general"   aria-selected="false">💬 General contact</button>
+            </div>
+
+            <!-- ---- PARTNER FORM ---- -->
+            <div class="form-panel" id="panel-partner" role="tabpanel" aria-labelledby="tab-partner" aria-hidden="true">
+              <h2 class="form-panel__title">Partner with WildWise</h2>
+              <p class="form-panel__desc">
+                We partner with schools, nature centers, parks, conservation organizations, veterinary
+                clinics, and businesses who want to be part of better wildlife education in Michigan.
+              </p>
+
+              <!--
+                To use Netlify Forms: add netlify data-netlify="true" and name attribute to the form.
+                To use mailto: set action="mailto:hello@wildwise.org" method="POST" enctype="text/plain"
+                [REPLACE] Update form action when deploying.
+              -->
+              <form
+                class="contact-form"
+                name="partner-inquiry"
+                id="partner-form"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                action="/thank-you.html"
+                method="POST"
+              >
+                <!-- Honeypot field for spam prevention (Netlify) -->
+                <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+                <input type="hidden" name="form-name" value="partner-inquiry">
+
+                <div class="form-row form-row--2col">
+                  <div class="form-group">
+                    <label class="form-label required" for="partner-name">Your name</label>
+                    <input class="form-input" type="text" id="partner-name" name="name" autocomplete="name" required placeholder="Jane Smith">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label required" for="partner-org">Organization</label>
+                    <input class="form-input" type="text" id="partner-org" name="organization" required placeholder="Ottawa County Nature Center">
+                  </div>
+                </div>
+
+                <div class="form-row form-row--2col">
+                  <div class="form-group">
+                    <label class="form-label required" for="partner-email">Email</label>
+                    <input class="form-input" type="email" id="partner-email" name="email" autocomplete="email" required placeholder="jane@example.org">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="partner-phone">Phone (optional)</label>
+                    <input class="form-input" type="tel" id="partner-phone" name="phone" autocomplete="tel" placeholder="(616) 555-0100">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label required" for="partner-type">Organization type</label>
+                  <select class="form-select" id="partner-type" name="org-type" required>
+                    <option value="" disabled selected>Select one...</option>
+                    <option value="school">K–12 School</option>
+                    <option value="nature-center">Nature center / park</option>
+                    <option value="conservation">Conservation organization</option>
+                    <option value="vet-clinic">Veterinary clinic</option>
+                    <option value="library">Library</option>
+                    <option value="business">Business</option>
+                    <option value="government">Local government / parks dept.</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label required" for="partner-interest">What kind of partnership are you interested in?</label>
+                  <textarea class="form-textarea" id="partner-interest" name="interest" required rows="4" placeholder="Tell us a bit about your organization and what you have in mind..."></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="partner-size">Approximate audience size (if applicable)</label>
+                  <input class="form-input" type="text" id="partner-size" name="audience-size" placeholder="e.g. 200 students, 4 classrooms, ~50 staff">
+                </div>
+
+                <div class="form-submit">
+                  <button type="submit" class="btn-primary">Send inquiry</button>
+                  <span class="form-submit__note">We typically respond within 2–3 business days.</span>
+                </div>
+
+              </form>
+
+              <div class="form-success" aria-live="polite">
+                <div class="form-success__icon">✓</div>
+                <h3 class="form-success__title">Thank you!</h3>
+                <p class="form-success__body">We've received your partnership inquiry and will be in touch within a few days.</p>
+              </div>
+
+            </div>
+
+            <!-- ---- SCHOOL VISIT FORM ---- -->
+            <div class="form-panel" id="panel-school" role="tabpanel" aria-labelledby="tab-school" aria-hidden="true">
+              <h2 class="form-panel__title">Book a school visit</h2>
+              <p class="form-panel__desc">
+                Noodle is available for K–12 school visits, library programs, and community events
+                in Ottawa County and surrounding areas. Sessions are 45–90 minutes.
+              </p>
+
+              <form
+                class="contact-form"
+                name="school-visit"
+                id="school-form"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                action="/thank-you.html"
+                method="POST"
+              >
+                <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+                <input type="hidden" name="form-name" value="school-visit">
+
+                <div class="form-row form-row--2col">
+                  <div class="form-group">
+                    <label class="form-label required" for="school-name">Your name</label>
+                    <input class="form-input" type="text" id="school-name" name="name" autocomplete="name" required placeholder="Ms. Johnson">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label required" for="school-role">Your role</label>
+                    <input class="form-input" type="text" id="school-role" name="role" required placeholder="3rd grade teacher, librarian...">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label required" for="school-org">School / organization name</label>
+                  <input class="form-input" type="text" id="school-org" name="organization" required placeholder="West Ottawa Elementary">
+                </div>
+
+                <div class="form-row form-row--2col">
+                  <div class="form-group">
+                    <label class="form-label required" for="school-email">Email</label>
+                    <input class="form-input" type="email" id="school-email" name="email" autocomplete="email" required placeholder="teacher@school.edu">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="school-phone">Phone (optional)</label>
+                    <input class="form-input" type="tel" id="school-phone" name="phone" autocomplete="tel" placeholder="(616) 555-0100">
+                  </div>
+                </div>
+
+                <div class="form-row form-row--2col">
+                  <div class="form-group">
+                    <label class="form-label" for="school-grade">Grade level(s)</label>
+                    <input class="form-input" type="text" id="school-grade" name="grade-levels" placeholder="e.g. Grades 3–5, all-school">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="school-size">Estimated number of students</label>
+                    <input class="form-input" type="text" id="school-size" name="student-count" placeholder="e.g. 25, 3 classrooms (~75)">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="school-dates">Preferred dates / timeframe</label>
+                  <input class="form-input" type="text" id="school-dates" name="preferred-dates" placeholder="e.g. Any Thursday in May, spring semester">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="school-notes">Anything else we should know?</label>
+                  <textarea class="form-textarea" id="school-notes" name="notes" rows="3" placeholder="Curriculum connections, accessibility needs, specific topics you'd like covered..."></textarea>
+                </div>
+
+                <div class="form-submit">
+                  <button type="submit" class="btn-primary">Request a visit</button>
+                  <span class="form-submit__note">We'll follow up to confirm availability and logistics.</span>
+                </div>
+
+              </form>
+
+              <div class="form-success" aria-live="polite">
+                <div class="form-success__icon">✓</div>
+                <h3 class="form-success__title">Visit request received!</h3>
+                <p class="form-success__body">We'll be in touch soon to confirm dates and logistics. Noodle is looking forward to it.</p>
+              </div>
+
+            </div>
+
+            <!-- ---- VOLUNTEER FORM ---- -->
+            <div class="form-panel" id="panel-volunteer" role="tabpanel" aria-labelledby="tab-volunteer" aria-hidden="true">
+              <h2 class="form-panel__title">Volunteer with WildWise</h2>
+              <p class="form-panel__desc">
+                We're building a wildlife transporter network — volunteer drivers who can safely move
+                animals from where they're found to licensed rehabbers. No special experience required.
+              </p>
+
+              <form
+                class="contact-form"
+                name="volunteer-interest"
+                id="volunteer-form"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                action="/thank-you.html"
+                method="POST"
+              >
+                <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+                <input type="hidden" name="form-name" value="volunteer-interest">
+
+                <div class="form-row form-row--2col">
+                  <div class="form-group">
+                    <label class="form-label required" for="vol-name">Your name</label>
+                    <input class="form-input" type="text" id="vol-name" name="name" autocomplete="name" required placeholder="Alex Williams">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label required" for="vol-email">Email</label>
+                    <input class="form-input" type="email" id="vol-email" name="email" autocomplete="email" required placeholder="alex@email.com">
+                  </div>
+                </div>
+
+                <div class="form-row form-row--2col">
+                  <div class="form-group">
+                    <label class="form-label" for="vol-phone">Phone</label>
+                    <input class="form-input" type="tel" id="vol-phone" name="phone" autocomplete="tel" placeholder="(616) 555-0100">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="vol-zip">Zip code / area</label>
+                    <input class="form-input" type="text" id="vol-zip" name="zip" autocomplete="postal-code" placeholder="49424">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label required" for="vol-interest">What type of volunteering interests you?</label>
+                  <select class="form-select" id="vol-interest" name="volunteer-type" required>
+                    <option value="" disabled selected>Select one...</option>
+                    <option value="transporter">Wildlife transporter (driver)</option>
+                    <option value="education">Education support / events</option>
+                    <option value="social">Social media / content</option>
+                    <option value="admin">Administrative support</option>
+                    <option value="multiple">Multiple areas</option>
+                    <option value="unsure">Not sure yet — tell me more</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="vol-vehicle">Do you have a reliable vehicle? (for transport volunteers)</label>
+                  <select class="form-select" id="vol-vehicle" name="has-vehicle">
+                    <option value="" selected>Select...</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="na">Not applicable to my interests</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="vol-availability">General availability</label>
+                  <input class="form-input" type="text" id="vol-availability" name="availability" placeholder="e.g. Weekends, weekday evenings, flexible">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="vol-notes">Anything else you'd like us to know?</label>
+                  <textarea class="form-textarea" id="vol-notes" name="notes" rows="3" placeholder="Previous experience with animals, relevant skills, questions..."></textarea>
+                </div>
+
+                <div class="form-submit">
+                  <button type="submit" class="btn-primary">Join the volunteer list</button>
+                  <span class="form-submit__note">We'll be in touch as the volunteer program develops.</span>
+                </div>
+
+              </form>
+
+              <div class="form-success" aria-live="polite">
+                <div class="form-success__icon">✓</div>
+                <h3 class="form-success__title">You're on the list!</h3>
+                <p class="form-success__body">Thanks for your interest in volunteering. We'll reach out as the transporter network and other volunteer programs develop.</p>
+              </div>
+
+            </div>
+
+            <!-- ---- GENERAL CONTACT FORM ---- -->
+            <div class="form-panel" id="panel-general" role="tabpanel" aria-labelledby="tab-general" aria-hidden="true">
+              <h2 class="form-panel__title">Say hello</h2>
+              <p class="form-panel__desc">
+                Questions, ideas, or just want to connect? Send us a message.
+                (If you've found an injured animal, please contact a licensed rehabber
+                or the Michigan DNR — we are not a rescue operation.)
+              </p>
+
+              <form
+                class="contact-form"
+                name="general-contact"
+                id="general-form"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                action="/thank-you.html"
+                method="POST"
+              >
+                <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+                <input type="hidden" name="form-name" value="general-contact">
+
+                <div class="form-row form-row--2col">
+                  <div class="form-group">
+                    <label class="form-label required" for="gen-name">Your name</label>
+                    <input class="form-input" type="text" id="gen-name" name="name" autocomplete="name" required placeholder="Your name">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label required" for="gen-email">Email</label>
+                    <input class="form-input" type="email" id="gen-email" name="email" autocomplete="email" required placeholder="you@email.com">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label required" for="gen-message">Message</label>
+                  <textarea class="form-textarea" id="gen-message" name="message" required rows="5" placeholder="What's on your mind?"></textarea>
+                </div>
+
+                <div class="form-submit">
+                  <button type="submit" class="btn-primary">Send message</button>
+                  <span class="form-submit__note">Or email us directly: <a href="mailto:hello@wildwise.org">hello@wildwise.org</a></span>
+                </div>
+
+              </form>
+
+              <div class="form-success" aria-live="polite">
+                <div class="form-success__icon">✓</div>
+                <h3 class="form-success__title">Message sent!</h3>
+                <p class="form-success__body">Thanks for reaching out. We'll get back to you soon.</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Sidebar -->
+          <div class="contact-sidebar fade-in">
+
+            <!-- Contact info -->
+            <div class="contact-info-card">
+              <h3 class="contact-info-card__title">Get in touch</h3>
+
+              <div class="contact-info-item">
+                <div class="contact-info-item__icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div>
+                  <div class="contact-info-item__label">Email</div>
+                  <!-- [REPLACE] Update with real email -->
+                  <div class="contact-info-item__value"><a href="mailto:hello@wildwise.org">hello@wildwise.org</a></div>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-info-item__icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5 14.5 7.6 14.5 9 13.4 11.5 12 11.5z"/></svg>
+                </div>
+                <div>
+                  <div class="contact-info-item__label">Location</div>
+                  <div class="contact-info-item__value">Ottawa County, Michigan</div>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-info-item__icon" aria-hidden="true">
+                  <!-- [REPLACE] Add social icons -->
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
+                </div>
+                <div>
+                  <div class="contact-info-item__label">Social</div>
+                  <!-- [REPLACE] Add real social links from config.json -->
+                  <div class="contact-info-item__value">Instagram · Facebook · TikTok<br><span style="opacity:0.5; font-size:0.8em;">Links coming soon</span></div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- What we are not card -->
+            <div class="card">
+              <h3 class="card__title" style="font-size: var(--text-base);">Not a wildlife rescue?</h3>
+              <div class="card__body">
+                <p>WildWise is an education organization, not a wildlife rescue. If you have an animal that needs immediate help, please contact:</p>
+                <ul style="margin-top: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3); font-size: var(--text-sm); color: var(--color-text-muted);">
+                  <li>Michigan DNR Wildlife Division</li>
+                  <li>A local licensed wildlife rehabilitator</li>
+                  <li>Your county's animal control</li>
+                  <li>Michigan Wildlife Hotline</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Response time note -->
+            <div style="padding: var(--space-5); background: rgba(172,182,102,0.08); border: 1px solid rgba(172,182,102,0.2); border-radius: var(--radius-md);">
+              <p style="font-size: var(--text-sm); color: var(--color-forest); font-weight: 500; margin-bottom: var(--space-2);">Response times</p>
+              <p style="font-size: var(--text-sm); color: var(--color-text-muted); max-width: none;">We typically respond to all inquiries within 2–3 business days. School visit and partnership requests may take a bit longer during busy seasons.</p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------
+         WAYS TO HELP
+    ------------------------------------------------------------------ -->
+    <section class="ways-section section" id="ways-to-help">
+      <div class="container">
+        <div class="ways-section__inner">
+
+          <div class="section-header fade-in">
+            <span class="section-label">Other ways to help</span>
+            <h2>Every person who knows better<br>helps more wildlife.</h2>
+            <p>You don't have to volunteer to make a difference. Sometimes the biggest impact is sharing what you know.</p>
+          </div>
+
+          <div class="ways-grid stagger-children">
+
+            <div class="way-card">
+              <div class="way-card__icon">📢</div>
+              <h3 class="way-card__title">Share the education</h3>
+              <div class="way-card__body">
+                <p>Every spring, someone in your life is going to find a "baby animal in need." Be the person who knows what to say. Share our education pages. Tag us.</p>
+              </div>
+            </div>
+
+            <div class="way-card">
+              <div class="way-card__icon">🏫</div>
+              <h3 class="way-card__title">Suggest a school visit</h3>
+              <div class="way-card__body">
+                <p>Know a teacher, librarian, or camp director? Suggest a Noodle visit. These programs reach kids at the age when wildlife habits form for life.</p>
+              </div>
+            </div>
+
+            <div class="way-card">
+              <div class="way-card__icon">🤝</div>
+              <h3 class="way-card__title">Connect us with organizations</h3>
+              <div class="way-card__body">
+                <p>We're looking to partner with parks, nature centers, conservation orgs, and vet clinics. If you know someone who should know us, make the introduction.</p>
+              </div>
+            </div>
+
+            <div class="way-card">
+              <div class="way-card__icon">🚗</div>
+              <h3 class="way-card__title">Join the transporter network</h3>
+              <div class="way-card__body">
+                <p>We're building a volunteer driver network to move animals from encounter to rehabber care faster. Have a car and a big heart? We want to hear from you.</p>
+              </div>
+            </div>
+
+            <div class="way-card">
+              <div class="way-card__icon">📸</div>
+              <h3 class="way-card__title">Follow and share our content</h3>
+              <div class="way-card__body">
+                <p>The more people who see our content, the more animals that don't get "rescued" unnecessarily. Follow us, engage, share. It matters.</p>
+              </div>
+            </div>
+
+            <div class="way-card">
+              <div class="way-card__icon">💬</div>
+              <h3 class="way-card__title">Tell us what your community needs</h3>
+              <div class="way-card__body">
+                <p>What wildlife questions come up in your neighborhood? What species? What mistakes? The more we hear, the more useful we can be. Drop us a line.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo">
+            <svg class="nav__logo-mark" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+              <circle cx="18" cy="18" r="17" stroke="#acb666" stroke-width="1.5" fill="none"/>
+              <path d="M18 8 C14 12 10 14 10 20 C10 25 13 28 18 28 C23 28 26 25 26 20 C26 14 22 12 18 8Z" fill="#acb666" opacity="0.7"/>
+              <circle cx="21" cy="16" r="1.5" fill="#2f4858"/>
+            </svg>
+            <span class="nav__logo-text"><span class="wild">WILD</span><span class="wise">WISE</span></span>
+          </a>
+          <p class="footer__tagline">Helping people help wildlife wisely.</p>
+          <p class="footer__location">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a5 5 0 0 0-5 5c0 3.5 5 9 5 9s5-5.5 5-9a5 5 0 0 0-5-5zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+            Ottawa County, Michigan
+          </p>
+        </div>
+        <div>
+          <p class="footer__col-title">Navigate</p>
+          <ul class="footer__links" role="list">
+            <li><a href="index.html"     class="footer__link">Home</a></li>
+            <li><a href="about.html"     class="footer__link">Our Story</a></li>
+            <li><a href="education.html" class="footer__link">Education</a></li>
+            <li><a href="contact.html"   class="footer__link">Get Involved</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Education</p>
+          <ul class="footer__links" role="list">
+            <li><a href="education.html#decision-guide"    class="footer__link">Should I help?</a></li>
+            <li><a href="education.html#dont-steal-babies" class="footer__link">Don't steal babies</a></li>
+            <li><a href="education.html#five-mistakes"     class="footer__link">5 Mistakes</a></li>
+            <li><a href="education.html#michigan-wildlife" class="footer__link">Michigan wildlife</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Connect</p>
+          <ul class="footer__links" role="list">
+            <li><a href="#panel-partner"   class="footer__link" data-tab-trigger="panel-partner">Partner with us</a></li>
+            <li><a href="#panel-volunteer" class="footer__link" data-tab-trigger="panel-volunteer">Volunteer</a></li>
+            <li><a href="#panel-school"    class="footer__link" data-tab-trigger="panel-school">Book a school visit</a></li>
+            <li><a href="mailto:hello@wildwise.org" class="footer__link">hello@wildwise.org</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; <span id="year"></span> WildWise · Ottawa County, Michigan · Est. 2025</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/contact.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Footer link triggers for tab navigation
+    document.querySelectorAll('[data-tab-trigger]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        const tabId = link.dataset.tabTrigger;
+        const targetTab = document.querySelector('[data-tab="' + tabId + '"]');
+        if (targetTab) {
+          targetTab.click();
+          const formsSection = document.getElementById('forms');
+          if (formsSection) {
+            setTimeout(function() {
+              const navHeight = document.querySelector('.nav') ? document.querySelector('.nav').offsetHeight : 0;
+              window.scrollTo({ top: formsSection.getBoundingClientRect().top + window.scrollY - navHeight - 16, behavior: 'smooth' });
+            }, 50);
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

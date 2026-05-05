@@ -1,0 +1,297 @@
+/* ==========================================================================
+   pages/contact.css — Contact / Get Involved page styles
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   Contact layout
+   -------------------------------------------------------------------------- */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr 380px;
+  }
+}
+
+.contact-sidebar {
+  position: sticky;
+  top: calc(var(--nav-height) + var(--space-8));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.contact-info-card {
+  background: var(--color-navy);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  color: var(--color-cream);
+}
+
+.contact-info-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--color-cream);
+  margin-bottom: var(--space-6);
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid rgba(134, 187, 216, 0.1);
+}
+
+.contact-info-item:last-child {
+  border-bottom: none;
+}
+
+.contact-info-item__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: rgba(134, 187, 216, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-sky);
+  flex-shrink: 0;
+}
+
+.contact-info-item__label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-olive);
+  margin-bottom: var(--space-1);
+}
+
+.contact-info-item__value {
+  font-size: var(--text-sm);
+  color: rgba(247, 249, 239, 0.8);
+  line-height: 1.5;
+}
+
+.contact-info-item__value a {
+  color: var(--color-sky);
+}
+
+.contact-info-item__value a:hover {
+  color: var(--color-cream);
+}
+
+
+/* --------------------------------------------------------------------------
+   Form panels
+   -------------------------------------------------------------------------- */
+
+.form-tabs {
+  display: flex;
+  gap: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-8);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.form-tabs::-webkit-scrollbar { display: none; }
+
+.form-tab {
+  flex-shrink: 0;
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  background: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+  cursor: pointer;
+}
+
+.form-tab:hover {
+  color: var(--color-navy);
+}
+
+.form-tab.active {
+  color: var(--color-steel);
+  border-bottom-color: var(--color-steel);
+  font-weight: 600;
+}
+
+.form-panel {
+  display: none;
+}
+
+.form-panel.active {
+  display: block;
+}
+
+.form-panel__title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--color-navy);
+  margin-bottom: var(--space-3);
+}
+
+.form-panel__desc {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-8);
+  max-width: 52ch;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 540px) {
+  .form-row--2col {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-submit {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+
+.form-submit__note {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Success message */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: var(--space-12) var(--space-8);
+}
+
+.form-success.visible {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.form-success__icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(172, 182, 102, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-forest);
+  font-size: 1.75rem;
+}
+
+.form-success__title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--color-navy);
+}
+
+.form-success__body {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 40ch;
+}
+
+
+/* --------------------------------------------------------------------------
+   Ways to help section
+   -------------------------------------------------------------------------- */
+
+.ways-section {
+  background: var(--color-navy);
+  position: relative;
+  overflow: hidden;
+}
+
+.ways-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 80% 30%, rgba(51, 101, 138, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(172, 182, 102, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.ways-section__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.ways-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-10);
+}
+
+@media (min-width: 640px) {
+  .ways-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .ways-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.way-card {
+  background: rgba(247, 249, 239, 0.04);
+  border: 1px solid rgba(134, 187, 216, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-7);
+  transition: background var(--transition-base), border-color var(--transition-base);
+}
+
+.way-card:hover {
+  background: rgba(247, 249, 239, 0.07);
+  border-color: rgba(134, 187, 216, 0.22);
+}
+
+.way-card__icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-4);
+  line-height: 1;
+}
+
+.way-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--color-cream);
+  margin-bottom: var(--space-3);
+}
+
+.way-card__body {
+  font-size: var(--text-sm);
+  color: rgba(247, 249, 239, 0.6);
+  line-height: 1.65;
+}
+
+.way-card__body p { max-width: none; }
