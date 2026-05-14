@@ -19,6 +19,11 @@ build/
 *.tsbuildinfo
 next-env.d.ts
 
+# Large media files
+*.mov
+*.mp4
+*.avi
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
