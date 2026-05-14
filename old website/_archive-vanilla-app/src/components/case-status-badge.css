@@ -1,0 +1,4 @@
+/* WildWise — case-status-badge
+   All case status styles live in src/styles/badges.css
+   Import that file; this one is kept for component co-location. */
+@import url('../styles/badges.css');

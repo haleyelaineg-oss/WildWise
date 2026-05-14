@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — WildWise</title>
+  <link rel="icon" href="/assets/images/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="/styles/variables.css" />
+  <link rel="stylesheet" href="/styles/reset.css" />
+  <link rel="stylesheet" href="/styles/base.css" />
+  <link rel="stylesheet" href="/styles/forms.css" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="register.css" />
+</head>
+<body class="auth-page">
+
+  <div class="auth-layout">
+
+    <div class="auth-panel auth-panel--brand">
+      <a href="/" class="auth-brand">
+        <img src="/assets/images/single-color-logo-circle-dark.png" alt="WildWise logo" class="auth-brand__logo" />
+        <span class="auth-brand__wordmark">
+          <span class="wild">WILD</span><span class="wise">WISE</span>
+        </span>
+      </a>
+      <blockquote class="auth-panel__quote">
+        "Wildlife rehabilitation starts with one person who cares enough to show up."
+      </blockquote>
+    </div>
+
+    <div class="auth-panel auth-panel--form">
+      <div class="auth-form-wrap auth-form-wrap--wide">
+        <div class="auth-form-wrap__header">
+          <h1>Create your account</h1>
+          <p>Join WildWise to help wildlife in your community.</p>
+        </div>
+
+        <form id="registerForm" novalidate>
+
+          <div class="form-row form-row--2col">
+            <div class="form-group">
+              <label class="form-label required" for="fullName">Full name</label>
+              <input class="form-input" type="text" id="fullName" name="fullName"
+                     autocomplete="name" placeholder="Jane Doe" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label required" for="email">Email address</label>
+              <input class="form-input" type="email" id="email" name="email"
+                     autocomplete="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+
+          <div class="form-row form-row--2col">
+            <div class="form-group">
+              <label class="form-label required" for="password">Password</label>
+              <input class="form-input" type="password" id="password" name="password"
+                     autocomplete="new-password" placeholder="Min. 8 characters" required minlength="8" />
+            </div>
+            <div class="form-group">
+              <label class="form-label required" for="confirmPassword">Confirm password</label>
+              <input class="form-input" type="password" id="confirmPassword" name="confirmPassword"
+                     autocomplete="new-password" placeholder="Repeat password" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required" for="role">I am a…</label>
+            <select class="form-select" id="role" name="role" required>
+              <option value="" disabled selected>Select your role</option>
+              <option value="finder">Finder — I find injured/orphaned animals</option>
+              <option value="licensed_rehabber">Licensed Wildlife Rehabber</option>
+              <option value="sub_permittee">Sub-Permittee (under a licensed rehabber)</option>
+              <option value="volunteer">General Volunteer</option>
+              <option value="transport_volunteer">Transport Volunteer</option>
+              <option value="licensed_vet">Licensed Veterinarian</option>
+            </select>
+            <span class="form-hint" id="roleHint"></span>
+          </div>
+
+          <!-- Shown for rehabber/vet -->
+          <div id="licenseFields" hidden>
+            <div class="form-row form-row--2col">
+              <div class="form-group">
+                <label class="form-label required" for="licenseNumber">License / Permit number</label>
+                <input class="form-input" type="text" id="licenseNumber" name="licenseNumber"
+                       placeholder="e.g. MI-2024-WR-0042" />
+              </div>
+              <div class="form-group">
+                <label class="form-label required" for="licenseState">Issuing state</label>
+                <select class="form-select" id="licenseState" name="licenseState">
+                  <option value="" disabled selected>Select state</option>
+                  <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
+                  <option>CA</option><option>CO</option><option>CT</option><option>DE</option>
+                  <option>FL</option><option>GA</option><option>HI</option><option>ID</option>
+                  <option>IL</option><option>IN</option><option>IA</option><option>KS</option>
+                  <option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                  <option>MA</option><option>MI</option><option>MN</option><option>MS</option>
+                  <option>MO</option><option>MT</option><option>NE</option><option>NV</option>
+                  <option>NH</option><option>NJ</option><option>NM</option><option>NY</option>
+                  <option>NC</option><option>ND</option><option>OH</option><option>OK</option>
+                  <option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                  <option>SD</option><option>TN</option><option>TX</option><option>UT</option>
+                  <option>VT</option><option>VA</option><option>WA</option><option>WV</option>
+                  <option>WI</option><option>WY</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shown for sub-permittee -->
+          <div id="rehabberFields" hidden>
+            <div class="form-group">
+              <label class="form-label required" for="rehabberEmail">Your rehabber's email</label>
+              <input class="form-input" type="email" id="rehabberEmail" name="rehabberEmail"
+                     placeholder="rehabber@example.com" />
+              <span class="form-hint">They'll receive an approval request.</span>
+            </div>
+          </div>
+
+          <div id="registerError" class="auth-error" hidden></div>
+
+          <button type="submit" class="btn-primary auth-submit" id="registerBtn">
+            Create Account
+          </button>
+
+        </form>
+
+        <p class="auth-form-wrap__footer">
+          Already have an account?
+          <a href="login.html" class="auth-link">Sign in</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="register.js"></script>
+</body>
+</html>

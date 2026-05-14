@@ -1,0 +1,136 @@
+/* WildWise — Animal Card styles */
+
+.animal-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.animal-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Photo */
+.animal-card__photo {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--color-sky) 0%, var(--color-steel) 100%);
+  overflow: hidden;
+}
+
+.animal-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.animal-card:hover .animal-card__img {
+  transform: scale(1.04);
+}
+
+.animal-card__photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.5);
+}
+
+.animal-card__img[src]:not([src=""]) ~ .animal-card__photo-placeholder {
+  display: none;
+}
+
+/* Status badge overlay */
+.animal-card__status {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+}
+
+/* Body */
+.animal-card__body {
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  flex: 1;
+}
+
+.animal-card__case-id {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.animal-card__species {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--color-navy);
+  margin-bottom: var(--space-4);
+  line-height: 1.25;
+}
+
+.animal-card__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+}
+
+.animal-card__meta dt {
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.animal-card__meta dd {
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Footer */
+.animal-card__footer {
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.animal-card__link {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-steel);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  transition: color var(--transition-fast), gap var(--transition-fast);
+}
+
+.animal-card__link::after {
+  content: '→';
+  font-size: 1em;
+}
+
+.animal-card__link:hover {
+  color: var(--color-navy);
+  gap: var(--space-2);
+}
+
+/* Card grid layout helper */
+.animal-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-6);
+}

@@ -1,0 +1,4 @@
+/* register.css — wider form panel override */
+.auth-form-wrap--wide {
+  max-width: 600px;
+}

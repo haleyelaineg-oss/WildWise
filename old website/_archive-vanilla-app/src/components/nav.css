@@ -1,0 +1,8 @@
+/* WildWise — nav component styles
+   Sidebar + topbar styles live in styles/dashboard-layout.css
+   This file holds any component-specific overrides. */
+
+/* Sidebar nav section spacing */
+.sidebar__nav-section + .sidebar__nav-section {
+  margin-top: var(--space-5);
+}

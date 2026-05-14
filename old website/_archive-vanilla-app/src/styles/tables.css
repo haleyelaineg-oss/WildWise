@@ -1,0 +1,317 @@
+/* ==========================================================================
+   tables.css — Data tables, sortable headers, row actions
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   Table wrapper
+   -------------------------------------------------------------------------- */
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  box-shadow: var(--shadow-sm);
+}
+
+
+/* --------------------------------------------------------------------------
+   Table
+   -------------------------------------------------------------------------- */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.table th {
+  background: var(--color-cream);
+  padding: var(--space-3) var(--space-5);
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.table th:first-child { border-top-left-radius: var(--radius-lg); }
+.table th:last-child  { border-top-right-radius: var(--radius-lg); }
+
+.table td {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:last-child td:first-child { border-bottom-left-radius: var(--radius-lg); }
+.table tbody tr:last-child td:last-child  { border-bottom-right-radius: var(--radius-lg); }
+
+.table tbody tr:hover td {
+  background: rgba(51, 101, 138, 0.03);
+}
+
+
+/* --------------------------------------------------------------------------
+   Sortable headers
+   -------------------------------------------------------------------------- */
+
+.table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.table th.sortable:hover {
+  color: var(--color-navy);
+  background: rgba(47, 72, 88, 0.06);
+}
+
+.table th .sort-icon {
+  display: inline-block;
+  margin-left: var(--space-1);
+  opacity: 0.4;
+  font-size: 10px;
+  vertical-align: middle;
+}
+
+.table th.sort-asc .sort-icon,
+.table th.sort-desc .sort-icon {
+  opacity: 1;
+  color: var(--color-steel);
+}
+
+
+/* --------------------------------------------------------------------------
+   Cell types
+   -------------------------------------------------------------------------- */
+
+.table td.td-actions {
+  white-space: nowrap;
+  width: 1%;
+}
+
+.table td.td-num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.table td.td-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.table td.td-muted {
+  color: var(--color-text-muted);
+}
+
+
+/* --------------------------------------------------------------------------
+   Row actions
+   -------------------------------------------------------------------------- */
+
+.row-actions {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.row-action-btn {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.row-action-btn:hover {
+  background: var(--color-border);
+  color: var(--color-navy);
+}
+
+.row-action-btn--danger:hover {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+
+/* --------------------------------------------------------------------------
+   Table toolbar (search + filters + actions)
+   -------------------------------------------------------------------------- */
+
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.table-search {
+  position: relative;
+  flex: 1;
+  max-width: 320px;
+}
+
+.table-search__icon {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.table-search input {
+  width: 100%;
+  padding: var(--space-2) var(--space-4) var(--space-2) var(--space-9);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  background: var(--color-white);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.table-search input:focus {
+  outline: none;
+  border-color: var(--color-steel);
+  box-shadow: 0 0 0 3px rgba(51, 101, 138, 0.1);
+}
+
+.table-filters {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.table-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-white);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+}
+
+.table-filter-chip:hover,
+.table-filter-chip.active {
+  border-color: var(--color-steel);
+  color: var(--color-steel);
+  background: var(--color-info-bg);
+}
+
+
+/* --------------------------------------------------------------------------
+   Empty state
+   -------------------------------------------------------------------------- */
+
+.table-empty {
+  text-align: center;
+  padding: var(--space-16) var(--space-8);
+  color: var(--color-text-muted);
+}
+
+.table-empty__icon {
+  width: 48px;
+  height: 48px;
+  color: var(--color-border-strong);
+  margin: 0 auto var(--space-4);
+}
+
+.table-empty__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--color-navy);
+  margin-bottom: var(--space-2);
+}
+
+.table-empty__text {
+  font-size: var(--text-sm);
+  max-width: 36ch;
+  margin: 0 auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   Pagination
+   -------------------------------------------------------------------------- */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.pagination__info {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.pagination__controls {
+  display: flex;
+  gap: var(--space-1);
+  align-items: center;
+}
+
+.pagination__btn {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-white);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.pagination__btn:hover:not(:disabled) {
+  border-color: var(--color-steel);
+  color: var(--color-steel);
+}
+
+.pagination__btn.active {
+  background: var(--color-steel);
+  border-color: var(--color-steel);
+  color: white;
+  font-weight: 600;
+}
+
+.pagination__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

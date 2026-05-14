@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pending Approval — WildWise</title>
+  <link rel="stylesheet" href="/styles/variables.css" />
+  <link rel="stylesheet" href="/styles/reset.css" />
+  <link rel="stylesheet" href="/styles/base.css" />
+  <link rel="stylesheet" href="/styles/forms.css" />
+</head>
+<body class="auth-page">
+  <div class="auth-layout">
+    <div class="auth-panel auth-panel--brand">
+      <a href="/" class="auth-brand">
+        <img src="/assets/images/single-color-logo-circle-dark.png" alt="WildWise logo" class="auth-brand__logo" />
+        <span class="auth-brand__wordmark">
+          <span class="wild">WILD</span><span class="wise">WISE</span>
+        </span>
+      </a>
+      <blockquote class="auth-panel__quote">
+        "Thank you for registering. Your license is pending approval from an administrator."
+      </blockquote>
+    </div>
+
+    <div class="auth-panel auth-panel--form">
+      <div class="auth-form-wrap">
+        <div class="auth-form-wrap__header">
+          <h1>Pending approval</h1>
+          <p>Your rehabber license request is under review. You will receive access once an admin approves your account.</p>
+        </div>
+
+        <div class="stat-card">
+          <p class="stat-card__label">What happens next</p>
+          <ul style="margin-top:0.75rem; padding-left:1.25rem; color: var(--color-text);">
+            <li>An administrator will review your license details.</li>
+            <li>Once approved, you can sign in to the rehabber dashboard.</li>
+            <li>If you need help, contact support or log out and try again later.</li>
+          </ul>
+        </div>
+
+        <p class="auth-form-wrap__footer">
+          <a href="/pages/auth/login.html" class="auth-link">Back to sign in</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="pending-approval.js"></script>
+</body>
+</html>

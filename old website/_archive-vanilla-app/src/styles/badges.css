@@ -1,0 +1,197 @@
+/* ==========================================================================
+   badges.css — Badges, tags, case status chips, role chips
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   Base badge (from public site)
+   -------------------------------------------------------------------------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-olive);
+  color: var(--color-forest);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.badge--steel  { background: var(--color-sky);    color: var(--color-navy); }
+.badge--navy   { background: var(--color-navy);   color: var(--color-cream); }
+.badge--forest { background: var(--color-forest); color: var(--color-cream); }
+
+
+/* --------------------------------------------------------------------------
+   Case status badges
+   -------------------------------------------------------------------------- */
+
+.case-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Dot indicator */
+.case-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.case-status--intake {
+  background: rgba(51, 101, 138, 0.12);
+  color: var(--color-steel);
+}
+.case-status--intake::before { background: var(--color-steel); }
+
+.case-status--active {
+  background: rgba(74, 124, 89, 0.12);
+  color: var(--color-success);
+}
+.case-status--active::before { background: var(--color-success); }
+
+.case-status--critical {
+  background: rgba(185, 64, 64, 0.12);
+  color: var(--color-danger);
+}
+.case-status--critical::before {
+  background: var(--color-danger);
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+.case-status--monitoring {
+  background: rgba(201, 136, 42, 0.12);
+  color: var(--color-warning);
+}
+.case-status--monitoring::before { background: var(--color-warning); }
+
+.case-status--pending-transfer {
+  background: rgba(134, 187, 216, 0.18);
+  color: var(--color-navy);
+}
+.case-status--pending-transfer::before { background: var(--color-sky); }
+
+.case-status--released {
+  background: rgba(172, 182, 102, 0.15);
+  color: var(--color-forest);
+}
+.case-status--released::before { background: var(--color-olive); }
+
+.case-status--deceased {
+  background: rgba(90, 99, 112, 0.1);
+  color: var(--color-text-muted);
+}
+.case-status--deceased::before { background: var(--color-text-muted); }
+
+.case-status--transferred {
+  background: rgba(47, 72, 88, 0.1);
+  color: var(--color-navy);
+}
+.case-status--transferred::before { background: var(--color-navy); }
+
+.case-status--non-releasable {
+  background: rgba(201, 136, 42, 0.12);
+  color: var(--color-warning);
+}
+.case-status--non-releasable::before { background: var(--color-warning); }
+
+
+/* --------------------------------------------------------------------------
+   Approval status badges
+   -------------------------------------------------------------------------- */
+
+.approval-status--pending  { background: rgba(201,136,42,0.12); color: var(--color-warning); }
+.approval-status--approved { background: rgba(74,124,89,0.12);  color: var(--color-success); }
+.approval-status--rejected { background: rgba(185,64,64,0.12);  color: var(--color-danger); }
+.approval-status--review   { background: rgba(51,101,138,0.12); color: var(--color-steel); }
+
+.approval-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+
+/* --------------------------------------------------------------------------
+   Role badge chips
+   -------------------------------------------------------------------------- */
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 3px var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.role-badge--finder             { background: rgba(134,187,216,0.15); color: var(--color-steel); }
+.role-badge--rehabber           { background: rgba(69,81,57,0.12);    color: var(--color-forest); }
+.role-badge--sub-permittee      { background: rgba(172,182,102,0.15); color: #5a6630; }
+.role-badge--volunteer          { background: rgba(51,101,138,0.1);   color: var(--color-steel); }
+.role-badge--transport          { background: rgba(47,72,88,0.1);     color: var(--color-navy); }
+.role-badge--vet                { background: rgba(74,124,89,0.12);   color: var(--color-success); }
+.role-badge--admin              { background: rgba(185,64,64,0.1);    color: var(--color-danger); }
+
+
+/* --------------------------------------------------------------------------
+   Tag (inline label, less prominent than badge)
+   -------------------------------------------------------------------------- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-muted);
+  background: transparent;
+  white-space: nowrap;
+}
+
+.tag--olive  { border-color: var(--color-olive);  color: var(--color-forest); background: rgba(172,182,102,0.1); }
+.tag--steel  { border-color: var(--color-steel);  color: var(--color-steel);  background: rgba(51,101,138,0.06); }
+.tag--navy   { border-color: var(--color-navy);   color: var(--color-navy);   background: rgba(47,72,88,0.06); }
+.tag--forest { border-color: var(--color-forest); color: var(--color-forest); background: rgba(69,81,57,0.08); }
+
+
+/* --------------------------------------------------------------------------
+   Pulse animation (used by critical status)
+   -------------------------------------------------------------------------- */
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.75); }
+}

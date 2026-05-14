@@ -1,0 +1,25 @@
+<!-- WildWise — Modal component
+     Inject once per page (or clone for multiple).
+     Control via modal.js: openModal(id, { title, body, onConfirm })
+-->
+
+<div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" id="modalDialog">
+    <div class="modal__header">
+      <h2 class="modal__title" id="modalTitle">Confirm</h2>
+      <button class="modal__close" id="modalClose" aria-label="Close dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal__body" id="modalBody">
+      <!-- Dynamic content injected here -->
+    </div>
+    <div class="modal__footer" id="modalFooter">
+      <button class="btn-secondary btn--sm" id="modalCancel">Cancel</button>
+      <button class="btn-primary btn--sm"   id="modalConfirm">Confirm</button>
+    </div>
+  </div>
+</div>
