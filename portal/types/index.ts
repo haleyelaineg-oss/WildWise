@@ -24,7 +24,17 @@ export interface UserProfile {
   created_at: string
 }
 
-export type CaseStatus = 'open' | 'accepted' | 'in_progress' | 'resolved' | 'closed'
+export type CaseStatus =
+  | 'open'
+  | 'accepted'
+  | 'pending_transport'
+  | 'transport_secured'
+  | 'en_route'
+  | 'in_care'
+  | 'assigned_to_sub_permittee'
+  | 'pending_release'
+  | 'unreleasable'
+  | 'did_not_make_it'
 
 export interface WildlifeCase {
   id: string

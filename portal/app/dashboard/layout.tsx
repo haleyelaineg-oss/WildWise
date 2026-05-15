@@ -63,9 +63,10 @@ export default async function DashboardLayout({ children }: { children: React.Re
   }
 
   const isAdmin = role === 'admin'
-  const hasSidebar = role === 'licensed_rehabber'
   const jar = await cookies()
   const viewAsRole = isAdmin ? (jar.get('ww_view_as')?.value as UserRole | undefined) ?? null : null
+  const effectiveRole = viewAsRole ?? role
+  const hasSidebar = effectiveRole === 'licensed_rehabber'
 
   return (
     <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', background: 'var(--color-cream)' }}>
@@ -114,7 +115,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
       {isAdmin && <ViewAsBar activeRole={viewAsRole} />}
 
       <div style={{ flex: 1, display: 'flex', minHeight: 0 }}>
-        {hasSidebar && <DashboardSidebar role={role as UserRole} />}
+        {hasSidebar && <DashboardSidebar role={effectiveRole as UserRole} />}
         <main id="main-content" style={{ flex: 1, minWidth: 0 }}>
           {children}
         </main>

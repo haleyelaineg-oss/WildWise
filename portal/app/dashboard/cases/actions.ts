@@ -49,7 +49,7 @@ export async function assignCase(
 
 export async function updateCaseStatus(
   caseId: string,
-  status: Exclude<CaseStatus, 'open'>,
+  status: CaseStatus,
 ): Promise<{ error?: string }> {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()

@@ -40,11 +40,16 @@ export const AGE_LABELS: Record<string, string> = {
 }
 
 export const STATUS_CONFIG: Record<CaseStatus, { label: string; color: string; bg: string }> = {
-  open:        { label: 'Open',        color: 'var(--color-navy)',       bg: 'rgba(27,51,73,0.08)' },
-  accepted:    { label: 'Accepted',    color: 'var(--color-olive)',      bg: 'rgba(103,133,83,0.12)' },
-  in_progress: { label: 'In Progress', color: 'var(--color-steel)',      bg: 'rgba(51,101,138,0.12)' },
-  resolved:    { label: 'Resolved',    color: 'var(--color-text-muted)', bg: 'rgba(0,0,0,0.06)' },
-  closed:      { label: 'Closed',      color: 'var(--color-text-muted)', bg: 'rgba(0,0,0,0.04)' },
+  open:                     { label: 'Awaiting Rehabber',       color: 'var(--color-navy)',       bg: 'rgba(27,51,73,0.08)' },
+  accepted:                 { label: 'Accepted',                color: 'var(--color-olive)',      bg: 'rgba(103,133,83,0.12)' },
+  pending_transport:        { label: 'Pending Transport',        color: 'var(--color-steel)',      bg: 'rgba(51,101,138,0.12)' },
+  transport_secured:        { label: 'Transport Secured',        color: 'var(--color-steel)',      bg: 'rgba(51,101,138,0.18)' },
+  en_route:                 { label: 'En Route',                 color: '#7a5c00',                 bg: 'rgba(200,160,0,0.12)' },
+  in_care:                  { label: 'In Care',                  color: 'var(--color-olive)',      bg: 'rgba(103,133,83,0.18)' },
+  assigned_to_sub_permittee:{ label: 'With Sub-Permittee',       color: 'var(--color-olive)',      bg: 'rgba(103,133,83,0.10)' },
+  pending_release:          { label: 'Pending Release',          color: '#7a5c00',                 bg: 'rgba(200,160,0,0.10)' },
+  unreleasable:             { label: 'Unreleasable',             color: 'var(--color-text-muted)', bg: 'rgba(0,0,0,0.06)' },
+  did_not_make_it:          { label: 'Did Not Make It',          color: '#c15439',                 bg: 'rgba(193,84,57,0.08)' },
 }
 
 export function formatAnimal(species: string | null, detail: string | null): string {

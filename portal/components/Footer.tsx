@@ -48,7 +48,7 @@ export default function Footer() {
             <p className="footer__col-title">About</p>
             <nav className="footer__links" aria-label="About links">
               <Link href="/learn#michigan-system" className="footer__link">Michigan System</Link>
-              <a href="mailto:hello@bewildwise.org" className="footer__link">Contact</a>
+              <a href="mailto:info@bewildwise.org" className="footer__link">Contact</a>
             </nav>
           </div>
         </div>
