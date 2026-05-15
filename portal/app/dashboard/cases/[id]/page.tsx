@@ -42,7 +42,7 @@ export default async function CasePage({ params }: { params: Promise<{ id: strin
 
   const c = caseData as CaseWithProfiles
   const status = STATUS_CONFIG[c.status]
-  const isTerminal = c.status === 'unreleasable' || c.status === 'did_not_make_it'
+  const isTerminal = c.status === 'unreleasable' || c.status === 'deceased'
 
   let rehabbers: Person[] = []
   let subPermittees: Person[] = []

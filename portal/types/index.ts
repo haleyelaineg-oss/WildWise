@@ -33,8 +33,10 @@ export type CaseStatus =
   | 'in_care'
   | 'assigned_to_sub_permittee'
   | 'pending_release'
+  | 'reunite_pending'
+  | 'reunite_attempt_failed'
   | 'unreleasable'
-  | 'did_not_make_it'
+  | 'deceased'
   | 'resolved'
   | 'closed'
 

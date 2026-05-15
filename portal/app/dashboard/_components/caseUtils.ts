@@ -48,8 +48,10 @@ export const STATUS_CONFIG: Record<CaseStatus, { label: string; color: string; b
   in_care:                  { label: 'In Care',                  color: 'var(--color-olive)',      bg: 'rgba(103,133,83,0.18)' },
   assigned_to_sub_permittee:{ label: 'With Sub-Permittee',       color: 'var(--color-olive)',      bg: 'rgba(103,133,83,0.10)' },
   pending_release:          { label: 'Pending Release',          color: '#7a5c00',                 bg: 'rgba(200,160,0,0.10)' },
+  reunite_pending:          { label: 'Reunite Pending',          color: 'var(--color-steel)',      bg: 'rgba(51,101,138,0.12)' },
+  reunite_attempt_failed:   { label: 'Reunite Attempt Failed',   color: 'var(--color-olive)',      bg: 'rgba(103,133,83,0.12)' },
   unreleasable:             { label: 'Unreleasable',             color: 'var(--color-text-muted)', bg: 'rgba(0,0,0,0.06)' },
-  did_not_make_it:          { label: 'Did Not Make It',          color: '#c15439',                 bg: 'rgba(193,84,57,0.08)' },
+  deceased:                 { label: 'Did Not Make It',          color: '#c15439',                 bg: 'rgba(193,84,57,0.08)' },
   resolved:                 { label: 'Resolved',                 color: 'var(--color-olive)',      bg: 'rgba(103,133,83,0.15)' },
   closed:                   { label: 'Closed',                   color: 'var(--color-text-muted)', bg: 'rgba(0,0,0,0.08)' },
 }

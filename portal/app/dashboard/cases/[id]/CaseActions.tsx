@@ -24,8 +24,10 @@ const STATUS_OPTIONS: { status: CaseStatus; label: string }[] = [
   { status: 'in_care',                    label: 'In Care' },
   { status: 'assigned_to_sub_permittee',  label: 'With Sub-Permittee' },
   { status: 'pending_release',            label: 'Pending Release' },
+  { status: 'reunite_pending',            label: 'Reunite Pending' },
+  { status: 'reunite_attempt_failed',     label: 'Reunite Attempt Failed' },
   { status: 'unreleasable',              label: 'Unreleasable' },
-  { status: 'did_not_make_it',            label: 'Did Not Make It' },
+  { status: 'deceased',                  label: 'Did Not Make It' },
 ]
 
 export default function CaseActions({ c, role, rehabbers, subPermittees, otherRehabbers }: Props) {
@@ -36,7 +38,7 @@ export default function CaseActions({ c, role, rehabbers, subPermittees, otherRe
   const [selectedTransfer, setSelectedTransfer] = useState('')
   const [error, setError] = useState<string | null>(null)
 
-  const isTerminal = c.status === 'unreleasable' || c.status === 'did_not_make_it'
+  const isTerminal = c.status === 'unreleasable' || c.status === 'deceased'
   const isOpen = c.status === 'open'
   const isAdmin = role === 'admin'
   const isRehabber = role === 'licensed_rehabber'

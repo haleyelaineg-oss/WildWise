@@ -26,8 +26,10 @@ const STATUS_FILTERS: { value: CaseStatus | 'all'; label: string }[] = [
   { value: 'pending_transport',        label: 'Pending Transport' },
   { value: 'in_care',                  label: 'In Care' },
   { value: 'pending_release',          label: 'Pending Release' },
+  { value: 'reunite_pending',          label: 'Reunite Pending' },
+  { value: 'reunite_attempt_failed',   label: 'Reunite Attempt Failed' },
   { value: 'unreleasable',             label: 'Unreleasable' },
-  { value: 'did_not_make_it',          label: 'Did Not Make It' },
+  { value: 'deceased',                 label: 'Did Not Make It' },
 ]
 
 export default function AdminCasesTable({ cases, rehabbers }: Props) {
@@ -100,7 +102,7 @@ function AdminCaseRow({ c, rehabbers }: { c: WildlifeCaseWithAssignee; rehabbers
     })
   }
 
-  const isTerminal = c.status === 'unreleasable' || c.status === 'did_not_make_it'
+  const isTerminal = c.status === 'unreleasable' || c.status === 'deceased'
 
   return (
     <div
@@ -231,7 +233,7 @@ function AdminCaseRow({ c, rehabbers }: { c: WildlifeCaseWithAssignee; rehabbers
               )}
               <button
                 className="btn-secondary"
-                onClick={e => { e.stopPropagation(); handleStatus('did_not_make_it') }}
+                onClick={e => { e.stopPropagation(); handleStatus('deceased') }}
                 disabled={pending}
                 style={{ fontSize: 'var(--text-xs)', padding: 'var(--space-2) var(--space-4)' }}
               >

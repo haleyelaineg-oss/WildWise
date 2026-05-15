@@ -410,6 +410,7 @@ export default function DecisionTree() {
         found_county:    foundCounty.trim() || null,
         current_zip:     cz.length === 5 ? cz : null,
         is_urgent:       isUrgent,
+        status:          isReunitePending ? 'reunite_pending' : 'open',
         user_id:         user?.id ?? null,
         finder_name:           finderName.trim() || null,
         finder_phone:          finderPhone.trim() || null,
@@ -456,6 +457,10 @@ export default function DecisionTree() {
 
   const isObserveAdvised =
     (selections.conditions ?? []).includes('concerning') && selections.age === 'adult'
+
+  const isReunitePending =
+    (selections.conditions ?? []).includes('no_mom') &&
+    !['MomDeceased', 'MomRelocated'].includes(selections.momStatus ?? '')
 
   const animalNextDisabled =
     !selectedCategory || (selectedCategory !== 'other' && !selectedSpecificKey)
@@ -1405,6 +1410,27 @@ export default function DecisionTree() {
             </div>
 
             {/* Observe advice + escalation */}
+            {isReunitePending && !escalated && (
+              <div style={{ ...infoBoxStyle, marginBottom: 'var(--space-6)' }}>
+                <p style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-navy)', marginBottom: 'var(--space-2)', maxWidth: 'none' }}>
+                  Try a reunite attempt first
+                </p>
+                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', maxWidth: 'none', marginBottom: 'var(--space-4)' }}>
+                  Your case is pending a reunite attempt. Place the baby back where you found it, move away, and watch from a distance for 30–60 minutes.
+                </p>
+                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', maxWidth: 'none', marginBottom: 'var(--space-4)' }}>
+                  If reunite is successful, mark the case as <strong>Reunited with Mom</strong>. If unsuccessful, open your case and update the status to <strong>Reunite Attempt Failed</strong> to request rehabber help.
+                </p>
+                <button
+                  className="btn-secondary"
+                  onClick={() => setEscalating(true)}
+                  style={{ fontSize: 'var(--text-sm)' }}
+                >
+                  Request Rehabber Help Instead
+                </button>
+              </div>
+            )}
+
             {isObserveAdvised && !escalated && (
               <div style={{ ...infoBoxStyle, marginBottom: 'var(--space-6)' }}>
                 <p style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-navy)', marginBottom: 'var(--space-2)', maxWidth: 'none' }}>

@@ -42,25 +42,25 @@ const STATUS_OPTIONS: { status: CaseStatus; label: string }[] = [
   { status: 'in_care',                   label: 'In Care' },
   { status: 'assigned_to_sub_permittee', label: 'With Sub-Permittee' },
   { status: 'pending_release',           label: 'Pending Release' },
-  { status: 'unreleasable',              label: 'Unreleasable' },
-  { status: 'did_not_make_it',           label: 'Did Not Make It' },
+  { status: 'reunite_pending',           label: 'Reunite Pending' },
+  { status: 'reunite_attempt_failed',    label: 'Reunite Attempt Failed' },
   { status: 'resolved',                  label: 'Resolved' },
+  { status: 'deceased',                  label: 'Did Not Make It' },
   { status: 'closed',                    label: 'Closed' },
 ]
 
 const CLOSE_REASONS: { reason: string; status: CaseStatus; label: string }[] = [
-  { reason: 'reunited_with_mom', status: 'resolved', label: 'Reunited with Mom' },
-  { reason: 'released_to_wild',  status: 'resolved', label: 'Released to Wild' },
-  { reason: 'transferred_to_other_rehab', status: 'resolved', label: 'Transferred to Other Rehabber' },
-  { reason: 'died_with_finder', status: 'did_not_make_it', label: 'Died with Finder' },
-  { reason: 'died_in_transit', status: 'did_not_make_it', label: 'Died in Transit' },
-  { reason: 'died_in_rehabber_care', status: 'did_not_make_it', label: 'Died in Rehabber Care' },
-  { reason: 'humanely_euthanized', status: 'did_not_make_it', label: 'Humanely Euthanized' },
-  { reason: 'unreleasable',      status: 'unreleasable', label: 'Unreleasable' },
-  { reason: 'finder_unreachable', status: 'closed', label: 'Finder Unreachable' },
-  { reason: 'animal_not_found',  status: 'closed', label: 'Can No Longer Find Animal' },
-  { reason: 'duplicate_case',    status: 'closed', label: 'Duplicate Case' },
-  { reason: 'invalid_report',    status: 'closed', label: 'Invalid Report' },
+  { reason: 'reunited_with_mom',     status: 'resolved',     label: 'Reunited with Mom' },
+  { reason: 'released_to_wild',      status: 'resolved',     label: 'Released to Wild' },
+  { reason: 'died_with_finder',      status: 'deceased',     label: 'Died with Finder' },
+  { reason: 'died_in_transit',       status: 'deceased',     label: 'Died in Transit' },
+  { reason: 'died_in_rehabber_care', status: 'deceased',     label: 'Died in Rehabber Care' },
+  { reason: 'humanely_euthanized',   status: 'deceased',     label: 'Humanely Euthanized' },
+  { reason: 'unreleasable',          status: 'unreleasable', label: 'Unreleasable' },
+  { reason: 'finder_unreachable',    status: 'closed',       label: 'Finder Unreachable' },
+  { reason: 'animal_not_found',      status: 'closed',       label: 'Can No Longer Find Animal' },
+  { reason: 'duplicate_case',        status: 'closed',       label: 'Duplicate Case' },
+  { reason: 'invalid_report',        status: 'closed',       label: 'Invalid Report' },
 ]
 
 function CaseRow({ c, subPermittees, rehabbers }: { c: WildlifeCase; subPermittees: Person[]; rehabbers: Person[] }) {
@@ -124,7 +124,7 @@ function CaseRow({ c, subPermittees, rehabbers }: { c: WildlifeCase; subPermitte
     })
   }
 
-  const isTerminal = c.status === 'unreleasable' || c.status === 'did_not_make_it'
+  const isTerminal = c.status === 'unreleasable' || c.status === 'deceased'
   const needsTransport = c.status === 'accepted'
 
   return (
