@@ -4,6 +4,7 @@ import { cookies } from 'next/headers'
 import { createClient } from '@/lib/supabase/server'
 import OpenCasesTable from './_components/OpenCasesTable'
 import AdminCasesTable from './_components/AdminCasesTable'
+import MyCasesTable from './_components/MyCasesTable'
 import type { UserProfile, UserRole, WildlifeCase, WildlifeCaseWithAssignee } from '@/types'
 
 /* ── Role-specific content ───────────────────────────────────────────────── */
@@ -91,32 +92,21 @@ function RehabberDashboard({
   )
 }
 
-function SubPermitteeDashboard({ profile }: { profile: UserProfile }) {
+function SubPermitteeDashboard({
+  profile,
+  cases,
+}: {
+  profile: UserProfile
+  cases: WildlifeCase[]
+}) {
   return (
     <>
       <div className="section-header">
-        <span className="section-label">Sub-permittee</span>
+        <span className="section-label">Sub-Permittee</span>
         <h2 style={{ marginTop: 'var(--space-2)' }}>Welcome, {profile.display_name?.split(' ')[0]}</h2>
-        <p>View cases assigned to you by your sponsoring rehabilitator.</p>
+        <p>Cases assigned to you by your sponsoring rehabilitator.</p>
       </div>
-      <div className="card-grid card-grid--2">
-        <div className="card">
-          <span className="section-label">Cases</span>
-          <h3 className="card__title">Assigned to You</h3>
-          <p className="card__body">Animals currently in your care or awaiting pickup.</p>
-          <span className="card__link coming-soon" style={{ display: 'inline-flex', marginTop: 'var(--space-5)' }}>
-            Coming soon
-          </span>
-        </div>
-        <div className="card">
-          <span className="section-label">Sponsor</span>
-          <h3 className="card__title">Your Rehabber</h3>
-          <p className="card__body">Contact information for your sponsoring rehabilitator.</p>
-          <span className="card__link coming-soon" style={{ display: 'inline-flex', marginTop: 'var(--space-5)' }}>
-            Coming soon
-          </span>
-        </div>
-      </div>
+      <MyCasesTable cases={cases} />
     </>
   )
 }
@@ -299,6 +289,7 @@ export default async function DashboardPage() {
   let myCasesCount = 0
   let allCases: WildlifeCaseWithAssignee[] = []
   let rehabbers: { id: string; display_name: string | null }[] = []
+  let subCases: WildlifeCase[] = []
 
   if (role === 'licensed_rehabber') {
     const [{ data: openData }, { count: myCount }] = await Promise.all([
@@ -316,6 +307,15 @@ export default async function DashboardPage() {
     ])
     openCases = (openData ?? []) as WildlifeCase[]
     myCasesCount = myCount ?? 0
+  }
+
+  if (role === 'sub_permittee') {
+    const { data: subCasesData } = await supabase
+      .from('wildlife_cases')
+      .select('*')
+      .eq('sub_assigned_to', user.id)
+      .order('created_at', { ascending: false })
+    subCases = (subCasesData ?? []) as WildlifeCase[]
   }
 
   if (role === 'admin') {
@@ -341,7 +341,7 @@ export default async function DashboardPage() {
   } else if (role === 'admin') {
     content = <AdminDashboard allCases={allCases} rehabbers={rehabbers} />
   } else if (role === 'sub_permittee') {
-    content = <SubPermitteeDashboard profile={effectiveProfile} />
+    content = <SubPermitteeDashboard profile={effectiveProfile} cases={subCases} />
   } else if (role === 'volunteer' || role === 'transport_volunteer') {
     content = <VolunteerDashboard profile={effectiveProfile} />
   } else if (role === 'licensed_vet') {

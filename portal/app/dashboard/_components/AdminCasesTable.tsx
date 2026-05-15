@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useTransition } from 'react'
+import { useRouter } from 'next/navigation'
 import { assignCase, updateCaseStatus } from '../cases/actions'
 import {
   formatAnimal, timeAgo,
@@ -19,12 +20,14 @@ interface Props {
 }
 
 const STATUS_FILTERS: { value: CaseStatus | 'all'; label: string }[] = [
-  { value: 'all',        label: 'All' },
-  { value: 'open',       label: 'Open' },
-  { value: 'accepted',   label: 'Accepted' },
-  { value: 'in_progress',label: 'In Progress' },
-  { value: 'resolved',   label: 'Resolved' },
-  { value: 'closed',     label: 'Closed' },
+  { value: 'all',                      label: 'All' },
+  { value: 'open',                     label: 'Pending Acceptance' },
+  { value: 'accepted',                 label: 'Accepted by Rehabber' },
+  { value: 'pending_transport',        label: 'Pending Transport' },
+  { value: 'in_care',                  label: 'In Care' },
+  { value: 'pending_release',          label: 'Pending Release' },
+  { value: 'unreleasable',             label: 'Unreleasable' },
+  { value: 'did_not_make_it',          label: 'Did Not Make It' },
 ]
 
 export default function AdminCasesTable({ cases, rehabbers }: Props) {
@@ -78,6 +81,7 @@ export default function AdminCasesTable({ cases, rehabbers }: Props) {
 }
 
 function AdminCaseRow({ c, rehabbers }: { c: WildlifeCaseWithAssignee; rehabbers: Rehabber[] }) {
+  const router = useRouter()
   const [pending, startTransition] = useTransition()
   const [selectedRehabber, setSelectedRehabber] = useState('')
   const status = STATUS_CONFIG[c.status]
@@ -96,15 +100,17 @@ function AdminCaseRow({ c, rehabbers }: { c: WildlifeCaseWithAssignee; rehabbers
     })
   }
 
-  const isTerminal = c.status === 'resolved' || c.status === 'closed'
+  const isTerminal = c.status === 'unreleasable' || c.status === 'did_not_make_it'
 
   return (
     <div
       className="card"
+      onClick={() => router.push(`/dashboard/cases/${c.id}`)}
       style={{
         borderLeft: c.is_urgent ? '4px solid #c15439' : '4px solid transparent',
         opacity: pending ? 0.6 : 1,
         transition: 'opacity 0.15s',
+        cursor: 'pointer',
       }}
     >
       {/* Header */}
@@ -178,6 +184,7 @@ function AdminCaseRow({ c, rehabbers }: { c: WildlifeCaseWithAssignee; rehabbers
               <select
                 className="form-input"
                 value={selectedRehabber}
+                onClick={e => e.stopPropagation()}
                 onChange={e => setSelectedRehabber(e.target.value)}
                 style={{ fontSize: 'var(--text-xs)', padding: 'var(--space-2) var(--space-3)', minWidth: 160 }}
               >
@@ -190,7 +197,7 @@ function AdminCaseRow({ c, rehabbers }: { c: WildlifeCaseWithAssignee; rehabbers
               </select>
               <button
                 className="btn-primary"
-                onClick={handleAssign}
+                onClick={e => { e.stopPropagation(); handleAssign() }}
                 disabled={!selectedRehabber || pending}
                 style={{ fontSize: 'var(--text-xs)', padding: 'var(--space-2) var(--space-4)' }}
               >
@@ -202,31 +209,33 @@ function AdminCaseRow({ c, rehabbers }: { c: WildlifeCaseWithAssignee; rehabbers
           {/* Quick status buttons */}
           {!isTerminal && c.status !== 'open' && (
             <>
-              {c.status !== 'in_progress' && (
+              {c.status !== 'in_care' && (
                 <button
                   className="btn-secondary"
-                  onClick={() => handleStatus('in_progress')}
+                  onClick={e => { e.stopPropagation(); handleStatus('in_care') }}
                   disabled={pending}
                   style={{ fontSize: 'var(--text-xs)', padding: 'var(--space-2) var(--space-4)' }}
                 >
-                  In Progress
+                  In Care
+                </button>
+              )}
+              {c.status !== 'pending_release' && (
+                <button
+                  className="btn-primary"
+                  onClick={e => { e.stopPropagation(); handleStatus('pending_release') }}
+                  disabled={pending}
+                  style={{ fontSize: 'var(--text-xs)', padding: 'var(--space-2) var(--space-4)' }}
+                >
+                  Pending Release
                 </button>
               )}
               <button
-                className="btn-primary"
-                onClick={() => handleStatus('resolved')}
-                disabled={pending}
-                style={{ fontSize: 'var(--text-xs)', padding: 'var(--space-2) var(--space-4)' }}
-              >
-                Resolve
-              </button>
-              <button
                 className="btn-secondary"
-                onClick={() => handleStatus('closed')}
+                onClick={e => { e.stopPropagation(); handleStatus('did_not_make_it') }}
                 disabled={pending}
                 style={{ fontSize: 'var(--text-xs)', padding: 'var(--space-2) var(--space-4)' }}
               >
-                Close
+                Did Not Make It
               </button>
             </>
           )}

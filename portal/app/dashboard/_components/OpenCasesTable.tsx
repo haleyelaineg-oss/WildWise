@@ -1,6 +1,7 @@
 'use client'
 
-import { useTransition } from 'react'
+import React, { useTransition } from 'react'
+import { useRouter } from 'next/navigation'
 import { acceptCase } from '../cases/actions'
 import {
   formatAnimal, timeAgo,
@@ -25,22 +26,28 @@ export default function OpenCasesTable({ cases }: { cases: WildlifeCase[] }) {
 }
 
 function CaseRow({ c }: { c: WildlifeCase }) {
+  const router = useRouter()
   const [pending, startTransition] = useTransition()
+  const [error, setError] = React.useState<string | null>(null)
   const status = STATUS_CONFIG[c.status]
 
   function handleAccept() {
+    setError(null)
     startTransition(async () => {
-      await acceptCase(c.id)
+      const result = await acceptCase(c.id)
+      if (result.error) setError(result.error)
     })
   }
 
   return (
     <div
       className="card"
+      onClick={() => router.push(`/dashboard/cases/${c.id}`)}
       style={{
         borderLeft: c.is_urgent ? '4px solid #c15439' : '4px solid transparent',
         opacity: pending ? 0.6 : 1,
         transition: 'opacity 0.15s',
+        cursor: 'pointer',
       }}
     >
       {/* Header row */}
@@ -96,14 +103,19 @@ function CaseRow({ c }: { c: WildlifeCase }) {
           ZIP: <strong style={{ color: 'var(--color-navy)' }}>{c.found_zip}</strong>
           {c.current_zip && c.current_zip !== c.found_zip && ` → ${c.current_zip}`}
         </span>
-        <button
-          className="btn-primary"
-          onClick={handleAccept}
-          disabled={pending}
-          style={{ fontSize: 'var(--text-sm)', padding: 'var(--space-2) var(--space-5)' }}
-        >
-          {pending ? 'Accepting…' : 'Accept Case →'}
-        </button>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 'var(--space-1)' }}>
+          {error && (
+            <span style={{ fontSize: 'var(--text-xs)', color: '#c15439' }}>{error}</span>
+          )}
+          <button
+            className="btn-primary"
+            onClick={e => { e.stopPropagation(); handleAccept() }}
+            disabled={pending}
+            style={{ fontSize: 'var(--text-sm)', padding: 'var(--space-2) var(--space-5)' }}
+          >
+            {pending ? 'Accepting…' : 'Accept Case →'}
+          </button>
+        </div>
       </div>
     </div>
   )

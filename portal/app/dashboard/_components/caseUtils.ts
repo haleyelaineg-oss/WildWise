@@ -40,8 +40,8 @@ export const AGE_LABELS: Record<string, string> = {
 }
 
 export const STATUS_CONFIG: Record<CaseStatus, { label: string; color: string; bg: string }> = {
-  open:                     { label: 'Awaiting Rehabber',       color: 'var(--color-navy)',       bg: 'rgba(27,51,73,0.08)' },
-  accepted:                 { label: 'Accepted',                color: 'var(--color-olive)',      bg: 'rgba(103,133,83,0.12)' },
+  open:                     { label: 'Open · Pending Acceptance', color: 'var(--color-navy)',       bg: 'rgba(27,51,73,0.08)' },
+  accepted:                 { label: 'Accepted by Rehabber',    color: 'var(--color-olive)',      bg: 'rgba(103,133,83,0.12)' },
   pending_transport:        { label: 'Pending Transport',        color: 'var(--color-steel)',      bg: 'rgba(51,101,138,0.12)' },
   transport_secured:        { label: 'Transport Secured',        color: 'var(--color-steel)',      bg: 'rgba(51,101,138,0.18)' },
   en_route:                 { label: 'En Route',                 color: '#7a5c00',                 bg: 'rgba(200,160,0,0.12)' },
@@ -50,6 +50,8 @@ export const STATUS_CONFIG: Record<CaseStatus, { label: string; color: string; b
   pending_release:          { label: 'Pending Release',          color: '#7a5c00',                 bg: 'rgba(200,160,0,0.10)' },
   unreleasable:             { label: 'Unreleasable',             color: 'var(--color-text-muted)', bg: 'rgba(0,0,0,0.06)' },
   did_not_make_it:          { label: 'Did Not Make It',          color: '#c15439',                 bg: 'rgba(193,84,57,0.08)' },
+  resolved:                 { label: 'Resolved',                 color: 'var(--color-olive)',      bg: 'rgba(103,133,83,0.15)' },
+  closed:                   { label: 'Closed',                   color: 'var(--color-text-muted)', bg: 'rgba(0,0,0,0.08)' },
 }
 
 export function formatAnimal(species: string | null, detail: string | null): string {

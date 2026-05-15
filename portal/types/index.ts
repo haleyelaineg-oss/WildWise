@@ -35,6 +35,8 @@ export type CaseStatus =
   | 'pending_release'
   | 'unreleasable'
   | 'did_not_make_it'
+  | 'resolved'
+  | 'closed'
 
 export interface WildlifeCase {
   id: string
@@ -47,6 +49,7 @@ export interface WildlifeCase {
   no_mom_time: string | null
   condition_desc: string | null
   found_zip: string
+  found_county: string | null
   current_zip: string | null
   is_urgent: boolean
   status: CaseStatus
@@ -56,6 +59,12 @@ export interface WildlifeCase {
   user_id: string | null
   finder_name: string | null
   finder_phone: string | null
+  finder_can_transport: boolean | null
+  finder_transport_miles: number | null
+  sub_assigned_to: string | null
+  close_reason: string | null
+  closed_at: string | null
+  finder_notes: string[]
 }
 
 export interface WildlifeCaseWithAssignee extends WildlifeCase {

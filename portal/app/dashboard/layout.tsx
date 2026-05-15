@@ -81,32 +81,43 @@ export default async function DashboardLayout({ children }: { children: React.Re
         }}
       >
         <div
-          className="container"
           style={{
             height: 'var(--nav-height)',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between',
           }}
         >
-          <Link href="/" className="nav__logo">
-            <Image src="/assets/logos/full-color-circle-logo.png" alt="" width={52} height={52} style={{ height: 52, width: 'auto' }} />
-            <span className="nav__logo-text">
-              <span className="wild">WILD</span>
-              <span className="wise">WISE</span>
-            </span>
-          </Link>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
-            <div style={{ textAlign: 'right' }}>
-              <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-cream)', fontWeight: 600 }}>
-                {displayName}
-              </p>
-              <span className="badge badge--steel" style={{ fontSize: '0.65rem' }}>
-                {role.replace(/_/g, ' ')}
+          {/* Logo column — matches sidebar width */}
+          <div
+            style={{
+              width: 220,
+              minWidth: 220,
+              paddingLeft: 'var(--space-5)',
+              flexShrink: 0,
+            }}
+          >
+            <Link href="/" className="nav__logo">
+              <Image src="/assets/icons/hand-paw-light.svg" alt="" width={52} height={52} style={{ height: 52, width: 'auto' }} />
+              <span className="nav__logo-text">
+                <span className="wild">WILD</span>
+                <span className="wise">WISE</span>
               </span>
+            </Link>
+          </div>
+
+          {/* Right side — user info + sign out */}
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 'var(--space-5)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
+              <div style={{ textAlign: 'right' }}>
+                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-cream)', fontWeight: 600 }}>
+                  {displayName}
+                </p>
+                <span className="badge badge--steel" style={{ fontSize: '0.65rem' }}>
+                  {role.replace(/_/g, ' ')}
+                </span>
+              </div>
+              <SignOutButton />
             </div>
-            <SignOutButton />
           </div>
         </div>
       </header>

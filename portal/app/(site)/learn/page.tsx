@@ -14,11 +14,14 @@ export default function LearnPage() {
       <div className="page-hero">
         <div className="container page-hero__inner">
           <span className="section-label">Wildlife Education</span>
-          <h1>Michigan Wildlife — What You Need to Know</h1>
+          <h1 style={{ color: 'var(--color-white)' }}>Michigan Wildlife:</h1>
+          <h1 style={{ marginTop: 'var(--space-3)' }}>What You Need to Know</h1>
           <p className="lead">
-            Michigan is home to hundreds of native wildlife species. Understanding the
-            rules, the biology, and the rehabilitation system can mean the difference
-            between an animal&apos;s life and death.
+            Michigan is home to hundreds of native wildlife species. It's important to understand how to help injured animals safely and legally, and to know how the rehabilitation system works. This guide will walk you through everything you need to know about Michigan wildlife and how to respond if you find an animal in need.
+          
+          <Link href="/found-an-animal" className="btn-primary" style={{ marginTop: 'var(--space-8)', display: 'inline-flex' }}>
+            Found an Animal? Get Help Now
+          </Link>
           </p>
         </div>
       </div>

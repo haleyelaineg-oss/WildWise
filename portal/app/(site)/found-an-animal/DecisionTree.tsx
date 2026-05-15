@@ -7,6 +7,19 @@ import { createClient } from '@/lib/supabase/client'
 
 const DNR_REHABBER_URL = 'https://www.michigan.gov/dnr/managing-resources/wildlife/injured-wildlife'
 
+const MICHIGAN_COUNTIES = [
+  'Alcona','Alger','Allegan','Alpena','Antrim','Arenac','Baraga','Barry','Bay','Benzie',
+  'Berrien','Branch','Calhoun','Cass','Charlevoix','Cheboygan','Chippewa','Clare','Clinton',
+  'Crawford','Delta','Dickinson','Eaton','Emmet','Genesee','Gladwin','Gogebic','Grand Traverse',
+  'Gratiot','Hillsdale','Houghton','Huron','Ingham','Ionia','Iosco','Iron','Isabella','Jackson',
+  'Kalamazoo','Kalkaska','Kent','Keweenaw','Lake','Lapeer','Leelanau','Lenawee','Livingston',
+  'Luce','Mackinac','Macomb','Manistee','Marquette','Mason','Mecosta','Menominee','Midland',
+  'Missaukee','Monroe','Montcalm','Montmorency','Muskegon','Newaygo','Oakland','Oceana','Ogemaw',
+  'Ontonagon','Osceola','Oscoda','Otsego','Ottawa','Presque Isle','Roscommon','Saginaw',
+  'St. Clair','St. Joseph','Sanilac','Schoolcraft','Shiawassee','Tuscola','Van Buren',
+  'Washtenaw','Wayne','Wexford',
+]
+
 /* ── Types ───────────────────────────────────────────────────────────────── */
 
 type AnimalSpecies =
@@ -17,7 +30,7 @@ type AnimalSpecies =
   | 'turtle' | 'snake' | 'frog' | 'other_reptile'
   | 'other'
 
-type AnimalAge = 'infant' | 'very_young' | 'adult'
+type AnimalAge = 'infant' | 'very_young' | 'adult' | 'unsure'
 type Condition = 'injured' | 'concerning' | 'displaced' | 'no_mom' | 'separated'
 type Step = 'disclaimer' | 'animal' | 'age' | 'condition' | 'location' | 'results'
 type Category = 'mammal' | 'bird' | 'reptile' | 'other'
@@ -30,8 +43,12 @@ interface Selections {
   conditionDesc?: string
   injurySymptoms?: string[]
   noMomTime?: string
+  momStatus?: string
   foundZip?: string
   currentZip?: string
+  pickupStreet?: string
+  pickupCity?: string
+  pickupZip?: string
 }
 
 interface AnimalOption {
@@ -117,6 +134,7 @@ const CATEGORY_OPTIONS: Record<Exclude<Category, 'other'>, AnimalOption[]> = {
 
 const INJURY_SYMPTOMS = [
   'Bleeding or open wound',
+  'Lethargic',
   'Broken or dragging limb',
   'Cannot stand or move',
   'Hit by a vehicle',
@@ -132,12 +150,6 @@ const INJURY_SYMPTOMS = [
 ]
 
 const ADULT_CONDITIONS: ConditionConfig[] = [
-  {
-    key: 'injured',
-    label: 'Visibly injured or sick',
-    badge: 'Urgent',
-    description: 'Bleeding, broken limb, can\'t move or stand, hit by a car, labored breathing',
-  },
   {
     key: 'concerning',
     label: 'Concerning behavior or appearance',
@@ -155,14 +167,7 @@ const YOUNG_CONDITIONS: ConditionConfig[] = [
   {
     key: 'no_mom',
     label: 'No Sign of Mom',
-    badge: 'Urgent',
     description: 'Mom hasn\'t returned for an extended period or may be deceased',
-  },
-  {
-    key: 'injured',
-    label: 'Visibly injured or sick',
-    badge: 'Urgent',
-    description: 'Bleeding, broken limb, can\'t move or stand, labored breathing',
   },
   {
     key: 'displaced',
@@ -231,13 +236,20 @@ export default function DecisionTree() {
   const [selectedConditions, setSelectedConditions] = useState<Set<Condition>>(new Set())
   const [injurySymptoms, setInjurySymptoms] = useState<string[]>([])
   const [noMomTime, setNoMomTime] = useState('')
+  const [momStatus, setMomStatus] = useState('')
   const [conditionDesc, setConditionDesc] = useState('')
 
   // Step 4 state
   const [foundZip, setFoundZip] = useState('')
+  const [foundCounty, setFoundCounty] = useState('')
   const [currentZip, setCurrentZip] = useState('')
   const [finderName, setFinderName] = useState('')
   const [finderPhone, setFinderPhone] = useState('')
+  const [finderCanTransport, setFinderCanTransport] = useState<boolean | null>(null)
+  const [finderTransportMiles, setFinderTransportMiles] = useState<number | null>(null)
+  const [pickupStreet, setPickupStreet] = useState('')
+  const [pickupCity, setPickupCity] = useState('')
+  const [pickupZip, setPickupZip] = useState('')
 
   const [acknowledged, setAcknowledged] = useState(false)
   const [showAckError, setShowAckError] = useState(false)
@@ -279,11 +291,18 @@ export default function DecisionTree() {
     setSelectedConditions(new Set())
     setInjurySymptoms([])
     setNoMomTime('')
+    setMomStatus('')
     setConditionDesc('')
     setFoundZip('')
+    setFoundCounty('')
     setCurrentZip('')
     setFinderName('')
     setFinderPhone('')
+    setFinderCanTransport(null)
+    setFinderTransportMiles(null)
+    setPickupStreet('')
+    setPickupCity('')
+    setPickupZip('')
     setAcknowledged(false)
     setShowAckError(false)
     setEscalating(false)
@@ -343,8 +362,9 @@ export default function DecisionTree() {
       ...s,
       conditions: Array.from(selectedConditions),
       conditionDesc: conditionDesc.trim() || undefined,
-      injurySymptoms: selectedConditions.has('injured') ? injurySymptoms : undefined,
+      injurySymptoms: injurySymptoms.length > 0 ? injurySymptoms : undefined,
       noMomTime: selectedConditions.has('no_mom') ? noMomTime.trim() || undefined : undefined,
+      momStatus: selectedConditions.has('no_mom') ? momStatus.trim() || undefined : undefined,
     }))
     setStep('location')
   }
@@ -358,9 +378,20 @@ export default function DecisionTree() {
     setSubmitting(true)
     setSubmitError('')
 
+    const isYoungWithNoMom =
+      (selections.age === 'infant' || selections.age === 'very_young') &&
+      (selections.conditions ?? []).includes('no_mom')
+
+    const noMomUrgent = isYoungWithNoMom && (
+      selections.momStatus === 'MomDeceased' ||
+      selections.momStatus === 'MomRelocated' ||
+      selections.noMomTime === '24–48 hours' ||
+      selections.noMomTime === 'Over two days'
+    )
+
     const isUrgent =
-      selections.age === 'infant' ||
-      (selections.conditions ?? []).some(c => c === 'injured' || c === 'no_mom')
+      (selections.injurySymptoms ?? []).length > 0 ||
+      noMomUrgent
 
     const supabase = createClient()
     const { data: { user } } = await supabase.auth.getUser()
@@ -376,11 +407,17 @@ export default function DecisionTree() {
         no_mom_time:     selections.noMomTime  ?? null,
         condition_desc:  selections.conditionDesc ?? null,
         found_zip:       fz,
+        found_county:    foundCounty.trim() || null,
         current_zip:     cz.length === 5 ? cz : null,
         is_urgent:       isUrgent,
         user_id:         user?.id ?? null,
-        finder_name:     finderName.trim() || null,
-        finder_phone:    finderPhone.trim() || null,
+        finder_name:           finderName.trim() || null,
+        finder_phone:          finderPhone.trim() || null,
+        finder_can_transport:  finderCanTransport,
+        finder_transport_miles: finderCanTransport ? finderTransportMiles : null,
+        pickup_street:         !finderCanTransport ? pickupStreet.trim() || null : null,
+        pickup_city:           !finderCanTransport ? pickupCity.trim() || null : null,
+        pickup_zip:            !finderCanTransport ? pickupZip.trim() || null : null,
       })
       .select('id')
       .single()
@@ -393,7 +430,14 @@ export default function DecisionTree() {
     }
 
     setCaseId(data.id)
-    setSelections(s => ({ ...s, foundZip: fz, currentZip: cz.length === 5 ? cz : undefined }))
+    setSelections(s => ({ 
+      ...s, 
+      foundZip: fz, 
+      currentZip: cz.length === 5 ? cz : undefined,
+      pickupStreet: pickupStreet.trim() || undefined,
+      pickupCity: pickupCity.trim() || undefined,
+      pickupZip: pickupZip.trim() || undefined
+    }))
     setStep('results')
   }
 
@@ -766,12 +810,9 @@ export default function DecisionTree() {
                   outlineOffset: 0,
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', color: 'var(--color-navy)', fontWeight: 600 }}>
-                    Infant
-                  </span>
-                  <span className="badge">Urgent</span>
-                </div>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', color: 'var(--color-navy)', fontWeight: 600 }}>
+                  Infant
+                </span>
                 <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', marginTop: 'var(--space-2)', maxWidth: 'none' }}>
                   No fur or feathers, eyes still closed, clearly newborn or very recently born
                 </p>
@@ -789,12 +830,9 @@ export default function DecisionTree() {
                   outlineOffset: 0,
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', color: 'var(--color-navy)', fontWeight: 600 }}>
-                    Very Young
-                  </span>
-                  <span className="badge">Urgent</span>
-                </div>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', color: 'var(--color-navy)', fontWeight: 600 }}>
+                  Very Young
+                </span>
                 <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', marginTop: 'var(--space-2)', maxWidth: 'none' }}>
                   Some fur or feathers beginning to appear, eyes recently opened, clearly a small juvenile
                 </p>
@@ -820,6 +858,26 @@ export default function DecisionTree() {
                 </p>
               </button>
 
+              <button
+                onClick={() => setPendingAge('unsure')}
+                className="card"
+                style={{
+                  textAlign: 'left',
+                  padding: 'var(--space-6)',
+                  cursor: 'pointer',
+                  borderLeft: pendingAge === 'unsure' ? '4px solid var(--color-olive)' : '4px solid var(--color-gray)',
+                  outline: pendingAge === 'unsure' ? '2px solid var(--color-olive)' : 'none',
+                  outlineOffset: 0,
+                }}
+              >
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', color: 'var(--color-navy)', fontWeight: 600 }}>
+                  Unsure
+                </span>
+                <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', marginTop: 'var(--space-2)', maxWidth: 'none' }}>
+                  I&apos;m not sure how old the animal is
+                </p>
+              </button>
+
             </div>
 
             {/* Bottom navigation */}
@@ -842,7 +900,7 @@ export default function DecisionTree() {
           <>
             <span className="section-label">Step 3 of 4</span>
             <h2 style={{ marginTop: 'var(--space-2)', marginBottom: animalNote ? 'var(--space-6)' : 'var(--space-4)' }}>
-              How does the animal appear?
+              Describe the Situation:
             </h2>
             <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', marginBottom: 'var(--space-8)' }}>
               Select all that apply.
@@ -948,7 +1006,7 @@ export default function DecisionTree() {
                             className="form-input"
                             value={noMomTime}
                             onChange={e => setNoMomTime(e.target.value)}
-                            style={{ maxWidth: 340 }}
+                            style={{ maxWidth: 340, marginBottom: 'var(--space-4)' }}
                           >
                             <option value="">Select a timeframe…</option>
                             <option value="Unknown (Just Found)">Unknown (Just Found)</option>
@@ -958,66 +1016,75 @@ export default function DecisionTree() {
                             <option value="24–48 hours">24–48 hours</option>
                             <option value="Over two days">Over two days</option>
                           </select>
+                          
+                          <label className="form-label" style={{ display: 'block', marginBottom: 'var(--space-2)' }}>
+                            What is the status of mom?
+                          </label>
+                          <select
+                            className="form-input"
+                            value={momStatus}
+                            onChange={e => setMomStatus(e.target.value)}
+                            style={{ maxWidth: 340 }}
+                          >
+                            <option value="">What&apos;s the status of mom?</option>
+                            <option value="MomGone">I don&apos;t see mom anywhere.</option>
+                            <option value="MomSeen">I&apos;ve seen mom, but she&apos;s not around now.</option>
+                            <option value="MomDeceased">I can confirm that mom is deceased.</option>
+                            <option value="MomRelocated">Mom has been relocated, but we found babies remaining</option>
+                          
+                          </select>
                         </div>
                       )}
 
-                      {/* Follow-up: Injured → symptom checklist */}
-                      {isSelected && cond.key === 'injured' && (
-                        <div
-                          style={{
-                            marginTop: 'var(--space-1)',
-                            padding: 'var(--space-5)',
-                            background: 'rgba(103,133,83,0.05)',
-                            border: '1px solid var(--color-border)',
-                            borderTop: 'none',
-                            borderRadius: '0 0 var(--radius-md) var(--radius-md)',
-                          }}
-                        >
-                          <p style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-navy)', marginBottom: 'var(--space-3)', maxWidth: 'none' }}>
-                            Check any symptoms you observe:
-                          </p>
-                          <div
-                            style={{
-                              display: 'grid',
-                              gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-                              gap: 'var(--space-2)',
-                            }}
-                          >
-                            {INJURY_SYMPTOMS.map(symptom => {
-                              const checked = injurySymptoms.includes(symptom)
-                              return (
-                                <label
-                                  key={symptom}
-                                  style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: 'var(--space-2)',
-                                    cursor: 'pointer',
-                                    padding: 'var(--space-2) var(--space-3)',
-                                    borderRadius: 'var(--radius-sm)',
-                                    background: checked ? 'rgba(103,133,83,0.1)' : 'transparent',
-                                    transition: 'background 0.1s',
-                                  }}
-                                >
-                                  <input
-                                    type="checkbox"
-                                    checked={checked}
-                                    onChange={() => toggleSymptom(symptom)}
-                                    style={{ width: 15, height: 15, accentColor: 'var(--color-olive)', cursor: 'pointer', flexShrink: 0 }}
-                                  />
-                                  <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-navy)' }}>
-                                    {symptom}
-                                  </span>
-                                </label>
-                              )
-                            })}
-                          </div>
-                        </div>
-                      )}
                     </div>
                   )
                 })}
 
+              </div>
+
+              {/* Symptom checklist — always visible */}
+              <div className="form-group">
+                <label className="form-label">
+                  Please check off any of the following symptoms you can see{' '}
+                  <span style={{ fontWeight: 400, color: 'var(--color-text-muted)' }}>(optional)</span>
+                </label>
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+                    gap: 'var(--space-2)',
+                    marginTop: 'var(--space-2)',
+                  }}
+                >
+                  {INJURY_SYMPTOMS.map(symptom => {
+                    const checked = injurySymptoms.includes(symptom)
+                    return (
+                      <label
+                        key={symptom}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 'var(--space-2)',
+                          cursor: 'pointer',
+                          padding: 'var(--space-2) var(--space-3)',
+                          borderRadius: 'var(--radius-sm)',
+                          background: checked ? 'rgba(103,133,83,0.1)' : 'transparent',
+                          transition: 'background 0.1s',
+                        }}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() => toggleSymptom(symptom)}
+                          style={{ width: 15, height: 15, accentColor: 'var(--color-olive)', cursor: 'pointer', flexShrink: 0 }}
+                        />
+                        <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-navy)' }}>
+                          {symptom}
+                        </span>
+                      </label>
+                    )
+                  })}
+                </div>
               </div>
 
               <div className="form-group">
@@ -1110,9 +1177,28 @@ export default function DecisionTree() {
               </div>
 
               <div className="form-group">
+                <label htmlFor="found-county" className="form-label required">
+                  County where the animal was found
+                </label>
+                <select
+                  id="found-county"
+                  className="form-input"
+                  value={foundCounty}
+                  onChange={e => setFoundCounty(e.target.value)}
+                  required
+                >
+                  <option value="" disabled>— Select a county —</option>
+                  {MICHIGAN_COUNTIES.map(c => (
+                    <option key={c} value={c}>{c} County</option>
+                  ))}
+                </select>
+                <span className="form-hint">Used for rabies vector species tracking.</span>
+              </div>
+
+              <div className="form-group">
                 <label htmlFor="current-zip" className="form-label">
-                  ZIP code of animal&apos;s current location{' '}
-                  <span style={{ fontWeight: 400, color: 'var(--color-text-muted)' }}>(if different)</span>
+                  Current / pickup location ZIP{' '}
+                  <span style={{ fontWeight: 400, color: 'var(--color-text-muted)' }}>(if different from above)</span>
                 </label>
                 <input
                   id="current-zip"
@@ -1126,6 +1212,107 @@ export default function DecisionTree() {
                 />
               </div>
 
+              <div className="form-group">
+                <label className="form-label">Are you able to transport the animal to a rehabber?</label>
+                <div style={{ display: 'flex', gap: 'var(--space-3)', marginTop: 'var(--space-2)', marginBottom: 'var(--space-3)' }}>
+                  {([true, false] as const).map(val => (
+                    <button
+                      key={String(val)}
+                      type="button"
+                      onClick={() => {
+                        setFinderCanTransport(val)
+                        if (!val) setFinderTransportMiles(null)
+                      }}
+                      style={{
+                        flex: 1,
+                        padding: 'var(--space-4)',
+                        borderRadius: 'var(--radius-md)',
+                        border: `2px solid ${finderCanTransport === val ? 'var(--color-olive)' : 'var(--color-border)'}`,
+                        background: finderCanTransport === val ? 'rgba(103,133,83,0.08)' : 'white',
+                        fontWeight: finderCanTransport === val ? 600 : 400,
+                        color: finderCanTransport === val ? 'var(--color-olive)' : 'var(--color-text)',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s',
+                      }}
+                    >
+                      {val ? 'Yes' : 'No'}
+                    </button>
+                  ))}
+                </div>
+
+                {finderCanTransport === true && (
+                  <div>
+                    <label className="form-label" style={{ display: 'block', marginBottom: 'var(--space-2)' }}>
+                      Up to how many miles?
+                    </label>
+                    <select
+                      className="form-input"
+                      value={finderTransportMiles ?? ''}
+                      onChange={e => setFinderTransportMiles(e.target.value ? Number(e.target.value) : null)}
+                    >
+                      <option value="">Select a range…</option>
+                      <option value="5">Up to 5 miles</option>
+                      <option value="10">Up to 10 miles</option>
+                      <option value="25">Up to 25 miles</option>
+                      <option value="50">Up to 50 miles</option>
+                      <option value="100">50+ miles</option>
+                    </select>
+                  </div>
+                )}
+
+                {finderCanTransport === false && (
+                  <>
+                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', padding: 'var(--space-4)', background: 'rgba(51,101,138,0.06)', borderRadius: 'var(--radius-md)', maxWidth: 'none', marginBottom: 'var(--space-4)' }}>
+                      No problem! A rehabber or member of our transport team will reach out to arrange pickup.
+                    </p>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+                      <div>
+                        <label className="form-label" style={{ display: 'block', marginBottom: 'var(--space-2)' }}>
+                          Street Address <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>(for planning purposes only)</span>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-input"
+                          placeholder="Enter the street address..."
+                          value={pickupStreet}
+                          onChange={e => setPickupStreet(e.target.value)}
+                        />
+                      </div>
+                      <div style={{ display: 'flex', gap: 'var(--space-3)' }}>
+                        <div style={{ flex: 2 }}>
+                          <label className="form-label" style={{ display: 'block', marginBottom: 'var(--space-2)' }}>
+                            City
+                          </label>
+                          <input
+                            type="text"
+                            className="form-input"
+                            placeholder="City"
+                            value={pickupCity}
+                            onChange={e => setPickupCity(e.target.value)}
+                          />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <label className="form-label" style={{ display: 'block', marginBottom: 'var(--space-2)' }}>
+                            ZIP Code
+                          </label>
+                          <input
+                            type="text"
+                            className="form-input"
+                            placeholder="12345"
+                            value={pickupZip}
+                            onChange={e => setPickupZip(e.target.value.replace(/\D/g, ''))}
+                            maxLength={5}
+                          />
+                        </div>
+                      </div>
+                      <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: 'var(--space-2)' }}>
+                        Someone will reach out to confirm and arrange a pickup time.
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
+
               {submitError && (
                 <p style={{ color: '#c15439', fontSize: 'var(--text-sm)', marginTop: 'var(--space-4)' }}>
                   {submitError}
@@ -1135,7 +1322,7 @@ export default function DecisionTree() {
               {/* Bottom navigation */}
               <div style={bottomNavStyle}>
                 <button type="button" onClick={goBack} className="btn-secondary" disabled={submitting}>← Back</button>
-                <button type="submit" className="btn-primary" disabled={foundZip.length !== 5 || submitting}>
+                <button type="submit" className="btn-primary" disabled={foundZip.length !== 5 || !foundCounty || submitting}>
                   {submitting ? 'Submitting…' : 'Submit Case'}
                 </button>
               </div>
@@ -1152,9 +1339,51 @@ export default function DecisionTree() {
             </h2>
 
             {caseId && (
-              <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginBottom: 'var(--space-6)', fontFamily: 'monospace' }}>
-                Case ID: {caseId}
-              </p>
+              <>
+                <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginBottom: 'var(--space-4)', fontFamily: 'monospace' }}>
+                  Case ID: {caseId}
+                </p>
+                <div style={{
+                  background: 'rgba(103,133,83,0.06)',
+                  border: '1px solid rgba(103,133,83,0.3)',
+                  borderRadius: 'var(--radius-md)',
+                  padding: 'var(--space-4)',
+                  marginBottom: 'var(--space-6)',
+                  textAlign: 'center'
+                }}>
+                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-navy)', marginBottom: 'var(--space-3)' }}>
+                    <strong>Save this Case ID to track your case:</strong>
+                  </p>
+                  <p style={{
+                    fontSize: 'var(--text-lg)',
+                    fontFamily: 'monospace',
+                    fontWeight: 600,
+                    color: 'var(--color-olive)',
+                    background: 'white',
+                    padding: 'var(--space-2)',
+                    borderRadius: 'var(--radius-sm)',
+                    border: '1px solid var(--color-border)',
+                    marginBottom: 'var(--space-3)'
+                  }}>
+                    {caseId}
+                  </p>
+                  <Link
+                    href="/case-lookup"
+                    style={{
+                      display: 'inline-block',
+                      padding: 'var(--space-2) var(--space-4)',
+                      background: 'var(--color-olive)',
+                      color: 'white',
+                      textDecoration: 'none',
+                      borderRadius: 'var(--radius-md)',
+                      fontSize: 'var(--text-sm)',
+                      fontWeight: 600
+                    }}
+                  >
+                    Track This Case →
+                  </Link>
+                </div>
+              </>
             )}
 
             <div
