@@ -8,6 +8,7 @@ import { createClient } from '@/lib/supabase/client'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 
 const NAV_LINKS = [
+  { href: '/', label: 'Home' },
   { href: '/learn', label: 'Learn' },
   { href: '/case-lookup', label: 'Track Case' },
   { href: '/verify', label: 'Verify a Rehabber' },
